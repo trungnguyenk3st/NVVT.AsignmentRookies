@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using AsignmentEcomerce.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,8 @@ namespace AsignmentEcomerce.Data
             : base(options)
         {
         }
+        public DbSet<Category> Categorys { get; set; }
+
+        public DbSet<Product> Products { get; set; }
     }
 }

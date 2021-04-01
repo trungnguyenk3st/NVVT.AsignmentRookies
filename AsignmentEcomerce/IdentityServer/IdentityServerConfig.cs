@@ -44,9 +44,9 @@ namespace AsignmentEcomerce.IdentityServer
 
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:5002/signin-oidc" },
+                    RedirectUris = { "https://localhost:44307/signin-oidc" },
 
-                    PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" },
+                    PostLogoutRedirectUris = { "https://localhost:44307/signout-callback-oidc" },
 
                     AllowedScopes = new List<string>
                     {

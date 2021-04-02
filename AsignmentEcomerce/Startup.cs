@@ -38,6 +38,7 @@ namespace AsignmentEcomerce
            
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddIdentityServer(options =>
@@ -52,6 +53,7 @@ namespace AsignmentEcomerce
                .AddInMemoryApiScopes(IdentityServerConfig.ApiScopes)
                .AddInMemoryClients(IdentityServerConfig.Clients)
               .AddAspNetIdentity<IdentityUser>()
+              .AddProfileService<CustomProfileService>()
                .AddDeveloperSigningCredential(); // not recommended for production - you need to store your key material 
 
             services.AddAuthentication()

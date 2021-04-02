@@ -56,7 +56,27 @@ namespace AsignmentEcomerce.IdentityServer
                         IdentityServerConstants.StandardScopes.Profile,
                         "rookieshop.api"
                     }
-                }
+                },
+                new Client
+                {
+                    ClientId = "swagger",
+                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.Code,
+
+                    RequireConsent = false,
+                    RequirePkce = true,
+
+                    RedirectUris =           { $"https://localhost:44342/swagger/oauth2-redirect.html" },
+                    PostLogoutRedirectUris = { $"https://localhost:44342/swagger/oauth2-redirect.html" },
+                    AllowedCorsOrigins =     { $"https://localhost:44342" },
+
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "rookieshop.api"
+                    }
+                },
             };
     }
 }

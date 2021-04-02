@@ -54,6 +54,21 @@ namespace AsignmentEcomerce
               .AddAspNetIdentity<IdentityUser>()
                .AddDeveloperSigningCredential(); // not recommended for production - you need to store your key material 
 
+            services.AddAuthentication()
+               .AddLocalApi("Bearer", option =>
+               {
+                   option.ExpectedScope = "rookieshop.api";
+               });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Bearer", policy =>
+                {
+                    policy.AddAuthenticationSchemes("Bearer");
+                    policy.RequireAuthenticatedUser();
+                });
+            });
+
             services.AddControllersWithViews();
             services.AddSwaggerGen(c =>
             {

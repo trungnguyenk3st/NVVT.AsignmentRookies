@@ -1,4 +1,6 @@
 ﻿using CustomerSite.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -23,8 +25,12 @@ namespace CustomerSite.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [Authorize]
+        public async Task<IActionResult> Privacy()
         {
+            var acessToken = await HttpContext.GetTokenAsync("access_token");
+            var requestId = await HttpContext.GetTokenAsync("id_token");
+
             return View();
         }
 

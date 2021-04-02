@@ -5,7 +5,7 @@
 
 @{ ViewData["Title"] = "My profile"; }
 
-<h2><a href="https://localhost:44341/Identity/Account/Manage">My Account</a></h2>
+<h2><a href="https://localhost:44342/Identity/Account/Manage">My Account</a></h2>
 <br />
 <br />
 
@@ -24,5 +24,6 @@
     @foreach (var prop in (await Context.AuthenticateAsync()).Properties.Items)
     {
 <dt>@prop.Key</dt>
-                <dd>@prop.Value</dd>}
+<dd>@prop.Value</dd>
+    }
 </dl>

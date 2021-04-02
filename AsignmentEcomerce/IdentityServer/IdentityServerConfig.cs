@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace AsignmentEcomerce.IdentityServer
 {
-    public class IdentityServerConfig
+    public static class IdentityServerConfig
     {
         public static IEnumerable<IdentityResource> IdentityResources =>
-           new List<IdentityResource>
-           {
+            new List<IdentityResource>
+            {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
-           };
+            };
 
         public static IEnumerable<ApiScope> ApiScopes =>
              new ApiScope[]
@@ -47,6 +47,8 @@ namespace AsignmentEcomerce.IdentityServer
                     RedirectUris = { "https://localhost:44307/signin-oidc" },
 
                     PostLogoutRedirectUris = { "https://localhost:44307/signout-callback-oidc" },
+                    AlwaysIncludeUserClaimsInIdToken = true,
+                    AlwaysSendClientClaims = true,
 
                     AllowedScopes = new List<string>
                     {

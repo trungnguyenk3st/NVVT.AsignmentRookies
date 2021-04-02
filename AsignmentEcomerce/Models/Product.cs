@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AsignmentEcomerce.Models
 {
-    public class Products
+    public class Product
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

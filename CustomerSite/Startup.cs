@@ -13,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Http;
 
 namespace CustomerSite
 {
@@ -36,7 +38,7 @@ namespace CustomerSite
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
-                    options.Authority = "https://localhost:44341";
+                    options.Authority = "https://localhost:44342";
                     options.RequireHttpsMetadata = false;
                     options.GetClaimsFromUserInfoEndpoint = true;
 
@@ -46,16 +48,17 @@ namespace CustomerSite
 
                     options.SaveTokens = true;
 
-                    options.Scope.Add("openid");
-                    options.Scope.Add("profile");
-                    options.Scope.Add("rookieshop.api");
+                    //options.Scope.Add("openid");
+                    //options.Scope.Add("profile");
+                    //options.Scope.Add("rookieshop.api");
 
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        NameClaimType = "name",
-                        RoleClaimType = "role"
-                    };
+                    //options.TokenValidationParameters = new TokenValidationParameters
+                    //{
+                    //    NameClaimType = "name",
+                    //    RoleClaimType = "role"
+                    //};
                 });
+
             services.AddControllersWithViews();
         }
 
@@ -86,7 +89,6 @@ namespace CustomerSite
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
             });
         }
     }

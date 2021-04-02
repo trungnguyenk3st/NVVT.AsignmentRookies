@@ -10,12 +10,12 @@ namespace AsignmentEcomerce.Models
     {
         public Category()
         {
-            this.Product = new HashSet<Products>();
+            this.Product = new HashSet<Product>();
         }
         [Key]
         public int IDCategory { get; set; }
         [Required]
         public string NameCategory { get; set; }
-        public ICollection<Products> Product { get; set; }
+        public ICollection<Product> Product { get; set; }
     }
 }

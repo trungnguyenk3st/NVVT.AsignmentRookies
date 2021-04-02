@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,9 +11,10 @@ namespace CustomerSite.Controllers
 {
     public class AccountController : Controller
     {
+
         public IActionResult SignIn()
         {
-            return Challenge(new AuthenticationProperties { RedirectUri = "/" }, "oidc");
+            return Challenge(new AuthenticationProperties { RedirectUri = "/" });
         }
         public new IActionResult SignOut()
         {

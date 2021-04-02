@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AsignmentEcomerce.Shared
 {
-    class CategoryCreateRequest
+    public class CategoryCreateRequest
     {
         [Required]
         public string NameCategory { get; set; }

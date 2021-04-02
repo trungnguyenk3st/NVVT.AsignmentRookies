@@ -1,91 +1,96 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AsignmentEcomerce.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AsignmentEcomerce.Models;
+using AsignmentEcomerce.Shared;
 
 namespace AsignmentEcomerce.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BrandsController : ControllerBase
+    public class CategoryController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public BrandsController(ApplicationDbContext context)
+        public CategoryController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<BrandVm>>> GetBrands()
+        public async Task<ActionResult<IEnumerable<CategoryVm>>> GetCategory()
         {
-            return await _context.Brands
-                .Select(x => new BrandVm { Id = x.Id, Name = x.Name })
+            return await _context.Categorys
+                .Select(x => new CategoryVm { IDCategory = x.IDCategory, NameCategory = x.NameCategory })
                 .ToListAsync();
         }
 
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public async Task<ActionResult<BrandVm>> GetBrand(int id)
+        public async Task<ActionResult<CategoryVm>> GetBrand(int id)
         {
-            var brand = await _context.Brands.FindAsync(id);
+            var category = await _context.Categorys.FindAsync(id);
 
-            if (brand == null)
+            if (category == null)
             {
                 return NotFound();
             }
 
-            var brandVm = new BrandVm
+            var categoryVm = new CategoryVm
             {
-                Id = brand.Id,
-                Name = brand.Name
+                IDCategory = category.IDCategory,
+                NameCategory = category.NameCategory
             };
 
-            return brandVm;
+            return categoryVm;
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBrand(int id, BrandCreateRequest brandCreateRequest)
+        public async Task<IActionResult> PutCategory(int id, CategoryCreateRequest categoryCreateRequest)
         {
-            var brand = await _context.Brands.FindAsync(id);
+            var category = await _context.Categorys.FindAsync(id);
 
-            if (brand == null)
+            if (category == null)
             {
                 return NotFound();
             }
 
-            brand.Name = brandCreateRequest.Name;
+            category.NameCategory = categoryCreateRequest.NameCategory;
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
         [HttpPost]
-        public async Task<ActionResult<BrandVm>> PostBrand(BrandCreateRequest brandCreateRequest)
+        public async Task<ActionResult<CategoryVm>> PostBrand(CategoryCreateRequest categoryCreateRequest)
         {
-            var brand = new Brand
+            var category = new Category
             {
-                Name = brandCreateRequest.Name
+                NameCategory = categoryCreateRequest.NameCategory
             };
 
-            _context.Brands.Add(brand);
+            _context.Categorys.Add(category);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBrand", new { id = brand.Id }, new BrandVm { Id = brand.Id, Name = brand.Name });
+            return CreatedAtAction("GetCategory", new { id = category.IDCategory }, new CategoryVm { IDCategory = category.IDCategory, NameCategory = category.NameCategory });
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBrand(int id)
         {
-            var brand = await _context.Brands.FindAsync(id);
+            var brand = await _context.Categorys.FindAsync(id);
             if (brand == null)
             {
                 return NotFound();
             }
 
-            _context.Brands.Remove(brand);
+            _context.Categorys.Remove(brand);
             await _context.SaveChangesAsync();
 
             return NoContent();

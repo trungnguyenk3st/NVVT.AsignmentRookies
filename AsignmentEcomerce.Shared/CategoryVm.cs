@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace AsignmentEcomerce.Shared
 {
-    class CategoryVm
+    public class CategoryVm
     {
-        [Key]
         public int IDCategory { get; set; }
-        [Required]
         public string NameCategory { get; set; }
     }
 }

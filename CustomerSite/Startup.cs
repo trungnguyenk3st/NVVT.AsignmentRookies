@@ -48,9 +48,9 @@ namespace CustomerSite
 
                     options.SaveTokens = true;
 
-                    //options.Scope.Add("openid");
-                    //options.Scope.Add("profile");
-                    //options.Scope.Add("rookieshop.api");
+                    options.Scope.Add("openid");
+                    options.Scope.Add("profile");
+                    options.Scope.Add("rookieshop.api");
 
                     //options.TokenValidationParameters = new TokenValidationParameters
                     //{

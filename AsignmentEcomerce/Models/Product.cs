@@ -22,5 +22,12 @@ namespace AsignmentEcomerce.Models
         public int IDCategory { get; set; }
         [ForeignKey("IDCategory")]
         public Category Category { get; set; }
+
+        public DateTime CreateDate { get; set; }
+
+        public DateTime UpdateDate { get; set; }
+
+
+
     }
 }

@@ -7,18 +7,22 @@ using System.Threading.Tasks;
 
 namespace AsignmentEcomerce.Models
 {
-    public class OrderDetails
+    public class RatingProduct
     {
         [Key]
-        public int IDOrderDetail { get; set; }
+        public int IDRating { get; set; }
 
-        public int Quantity { get; set; }
-        public double UnitPrice { get; set; }
-        public int IDOrder { get; set; }
-        [ForeignKey("IDOrder")]
-        public Order Order { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime Date { get; set; }
+
+        public string Comment { get; set; }
+
+     
+        [ForeignKey("Product")]
         public int IDProduct { get; set; }
-        [ForeignKey("IDProduct")]
+     
         public Product Product { get; set; }
+
+
     }
 }

@@ -5,28 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CustomerSite</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="./libs/normalize/normalize.css" />
+    <link rel="stylesheet" href="./libs/bootstrap/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="./libs/jpopup/dist/css/index.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/product.css" />
+    <link rel="stylesheet" href="~/css/product-detail.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CustomerSite</a>
+              
+                <img class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" src="~/images/logo123.png" alt="" srcset="">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    
+                @*   <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+          
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </li>
+            </ul>
+
+        </div>*@
+                <div class="col-4" style="padding-left: 2.5em;">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="las la-search"></i></span>
+
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+                    </div>
+
+                </div>
+                <div class="col-6">
+                    <div class="row align-items-center">
+
+                        <div class="col-3">
+                            <a class="header-link" href="">
+                                <div class="d-flex align-items-center">
+                                    <i class="las la-store header-icon"></i>
+                                    <span style="font-size: 1em;">Store & Services</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a class="header-link" href="">
+                                <div class="d-flex align-items-center">
+                                    <i class="las la-users header-icon"></i>
+                                    <span style="font-size: 1em;">Community</span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-3">
+                           
+                            <a class="header-link" href="">
+                                <div class="d-flex align-items-center">
+                                    <i class="las la-kiss-wink-heart header-icon"></i>
+                                    <partial name="_LoginPartial"  style="font-size: 1em;" />
+                                    @* <span style="font-size: 1em;">Sign In</span>*@
+                                </div>
+                            </a>
+
+                        </div>
+                        <div class="col-3">
+                            <div class="d-flex align-items-center">
+                                <a class="header-link" href=""><i class="lab la-gratipay header-icon"></i></a>
+                                <a class="header-link" href=""> <i class="las la-shopping-bag  header-icon"></i></a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
                 </div>
             </div>
         </nav>

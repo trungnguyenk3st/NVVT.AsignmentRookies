@@ -2,7 +2,271 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Front End</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="d-flex nav">
+    <a href="">All Products</a>
+    <a href="">News</a>
+    <a href="">Men</a>
+    <a href="">Women</a>
+    <a href="">Contact</a>
 </div>
+
+<div class="top-header">
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="name-brand">
+                <a>NVVT Authentic Shoes</a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Banner -->
+<div class="banner-wrapper">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div style="background-image:url(./images/banner2.jpeg)">
+                    <!-- <img src="./images/banner-114.jpeg" class="d-block w-100" alt="First Slide"> -->
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div style="background-image:url(./images/banner-1.jpg)">
+                    <!-- <img src="./images/banner-114.jpeg" class="d-block w-100" alt="First Slide"> -->
+                </div>
+
+            </div>
+            <div class="carousel-item">
+                <div style="background-image:url(./images/banner3.jpeg)">
+                    <!-- <img src="./images/banner-114.jpeg" class="d-block w-100" alt="First Slide"> -->
+                </div>
+
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    <div class="banner-text">
+        <p class="banner-text-red">BEST OFFER</p>
+        <p class="banner-text-white">NEW ARRIVALS ON SALE</p>
+    </div>
+
+</div>
+<!-- Body -->
+
+<section class="about-us-section">
+    <h2>Our Services</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do<br /> eiusmod Lorem ipsum dolor sit amet.</p>
+    <div class="services-container">
+        <div class="service">
+            <i class="fas fa-truck"></i>
+            <h4>Delivery Services</h4>
+        </div>
+        <div class="service">
+            <i class="fas fa-exchange-alt"></i>
+            <h4>Shipping&Returns</h4>
+        </div>
+        <div class="service">
+            <i class="fas fa-percentage"></i>
+            <h4>Promotion</h4>
+        </div>
+        <div class="service">
+            <i class="fas fa-user"></i>
+            <h4>24 Hours Service</h4>
+        </div>
+    </div>
+</section>
+
+<section class="products-section">
+    <h2>Our Products</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do<br /> eiusmod Lorem ipsum dolor sit amet.</p>
+</section>
+<div class="list-product-wrapper section">
+    <div class="container-fluid">
+        <div class="row">
+            <!------ filter ----->
+            <div class="col-12 col-lg-3">
+                <details>
+                    <summary class="bold text-4 upper-case" style="margin-bottom: 1em">
+                        Filter products
+                    </summary>
+                    <form id="filter-form">
+                        <input type="checkbox" id="vehicle1" name="jacket" value="1" />
+                        <label for="vehicle1">Adidas</label><br />
+                        <input type="checkbox" id="vehicle2" name="t-short" value="2" />
+                        <label for="vehicle2">Nike</label><br />
+                        <input type="checkbox" id="vehicle3" name="t-short" value="3" />
+                        <label for="vehicle2">Converse</label><br />
+                        <!------  ----->
+                        <hr style="margin-bottom: 1.5em; width: 60%; margin-left: 0" />
+                        <button class="btn btn-sm bg-black white" type="submit" style="margin-right: 1em">
+                            Apply
+                        </button>
+                        <button class="btn btn-sm bg-seconday black" type="reset">
+                            Reset
+                        </button>
+                    </form>
+                </details>
+            </div>
+            <!------ product----->
+            <div class="col-12 col-lg-9">
+                <!------ order ----->
+                <!-- <div class="order-by">
+                    <div class="row align-items-top justify-content-between">
+                        <div style="padding-left: 15px">12 products</div>
+                        <div class="dropdown">
+                            <div class="select" style="padding-top: 0">
+                                <span style="font-weight: 500">Order by</span>
+                                <i class="las la-angle-down"></i>
+                            </div>
+                            <input id="filter" type="hidden" name="filter" />
+                            <ul class="dropdown-menu">
+                                <li value="0"><a href="">High</a></li>
+                                <li value="0"><a href="">Low</a></li>
+                                <li value="0"><a href="">Popular</a></li>
+                                <li value="0"><a href="">Popular</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> -->
+                <!------ list ----->
+                <div id="list-product">
+                    <div class="row">
+                        <div class="col-6 col-lg-4">
+                            <div class="product-item" data-itemid="1">
+                                <span class="product-sale">- 30%</span>
+                                <a product-link href="/">
+                                    <div class="product-img">
+                                        <div class="img">
+                                            <img src="./images/air-jordan-1-low-2.jpeg" alt="" srcset="" />
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <p product-name class="mb-none bold">Product 1</p>
+                                        <p>This is a description of product 1</p>
+                                        <div class="rating">
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="lar la-star"></i>
+                                        </div>
+                                        <p class="price">3.000.000 VND</p>
+                                        <button type="button" class="btn btn-primary">Add to Cart</button>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <div class="product-item" data-itemid="1">
+                                <span class="product-sale">- 30%</span>
+                                <a product-link href="/">
+                                    <div class="product-img">
+                                        <div class="img">
+                                            <img src="./images/air-jordan-1-low-2.jpeg" alt="" srcset="" />
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <p product-name class="mb-none bold">Product 1</p>
+                                        <p>This is a description of product 1</p>
+                                        <div class="rating">
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="lar la-star"></i>
+                                        </div>
+                                        <p class="price">3.000.000 VND</p>
+                                        <button type="button" class="btn btn-primary">Add to Cart</button>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <div class="product-item" data-itemid="1">
+                                <span class="product-sale">- 30%</span>
+                                <a product-link href="/">
+                                    <div class="product-img">
+                                        <div class="img">
+                                            <img src="./images/air-jordan-1-low-2.jpeg" alt="" srcset="" />
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <p product-name class="mb-none bold">Product 1</p>
+                                        <p>This is a description of product 1</p>
+                                        <div class="rating">
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="lar la-star"></i>
+                                        </div>
+                                        <p class="price">3.000.000 VND</p>
+                                        <button type="button" class="btn btn-primary">Add to Cart</button>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!------ paginaton ----->
+
+                    </div>
+                </div>
+                <div class="pagination">
+                    <a class="page-item active" href="">1</a>
+                    <a class="page-item" href="">2</a>
+                    <a class="page-item" href="">3</a>
+                    <a class="page-item" href="">4</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- footer -->
+        <!--<footer class="footer-section">
+            <div class="footer-container">
+                <div class="menu">
+                    <h2>Trung Shop</h2>
+                    <div class="menu-items">
+                        <i class="fab fa-facebook-square"><a class="footer-link" href="#"> Trung Nguyen</a></i>
+                        <i class="fab fa-instagram-square"><a class="footer-link" href="#"> Trung Nguyen</a></i>
+                        <i class="fab fa-twitter-square"><a class="footer-link" href="#"> Trung Nguyen</a></i>
+                        <i class="fab fa-pinterest-square"><a class="footer-link" href="#"> Trung Nguyen</a></i>
+                    </div>
+                </div>
+                <div class="menu">
+                    <h2>Products </h2>
+                    <div class="menu-items">
+                        <a href="#">Men's Shoes</a>
+                        <a href="#">Women's Shoes</a>
+                        <a href="#">Popular Dress</a>
+                        <a href="#">Sport Shoes</a>
+                    </div>
+                </div>
+                <div class="menu">
+                    <h2>Further Info</h2>
+                    <div class="menu-items">
+                        <a href="#">Home</a>
+                        <a href="#">About</a>
+                        <a href="#">Contact</a>
+                        <a href="#">FAQs</a>
+                    </div>
+                </div>
+            </div>-->

@@ -1,0 +1,90 @@
+details {
+    cursor: pointer;
+}
+
+#filter-form {
+    margin-bottom: 2em;
+}
+
+#filter-form input {
+    width: auto;
+    margin-right: 1em;
+}
+
+
+/*============== list product =============*/
+
+.list-wrapper {
+    padding: 0 15px;
+}
+
+.list-product-wrapper {
+    padding: 0 30px;
+}
+
+.order-by {
+    margin-bottom: 1em;
+}
+
+.data-empty {
+    padding: 10em 0;
+    text-align: center;
+    opacity: 0.6;
+    text-transform: uppercase;
+}
+
+
+/*============== pagination =============*/
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.page-item {
+    padding: 0.5em 1em;
+    border-radius: 6px;
+    margin-right: 1em;
+    margin-left: 1em;
+    color: var(--primary);
+}
+
+.page-item.active {
+    pointer-events: none;
+    color: var(--bg-primary);
+    background-color: var(--impress);
+}
+
+.page-item:hover {
+    background-color: var(--bg-secondary);
+}
+
+.product-item {
+    text-align: center;
+    padding: 30px;
+}
+
+.product-item .product-title {
+    padding: 20px;
+}
+
+.product-item:hover .product-title {
+    color: #ff003c;
+}
+
+.product-item .product-description {
+    font-size: 18px;
+}
+
+.product-item .product-button {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+}
+
+.product-item .product-button:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+}

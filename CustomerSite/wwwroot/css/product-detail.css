@@ -1,0 +1,156 @@
+.img-anim {
+    position: relative;
+    overflow: hidden;
+    padding-top: 100%;
+    border-radius: 15px;
+}
+
+.img-anim .img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-primary);
+}
+
+.img-anim img {
+    transition: transform 0.2s;
+}
+
+@media only screen and (min-width: 62em) {
+    .img-anim:hover img {
+        transform: scale(1.3);
+    }
+}
+
+
+/*============= product-detail =============*/
+
+.product-detail h1 {
+    margin-bottom: 0.5em;
+}
+
+.product-detail .group-btns {
+    margin: 2em 0;
+}
+
+.product-detail .add-cart {
+    padding: 0.6em 1.5em;
+    font-weight: 500;
+    background-color: var(--impress);
+    color: var(--bg-primary);
+}
+
+.product-detail .add-cart:hover {
+    background-color: var(--bg-primary);
+    color: var(--primary);
+}
+
+.product-detail .attr-item {
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    border: 1px solid var(--bg-secondary);
+    color: black;
+    margin-right: 1em;
+}
+
+.product-detail .attr-item.active,
+.product-detail .attr-item:hover {
+    border-color: var(--impress);
+}
+
+.product-detail .attr-item.disable {
+    pointer-events: none;
+    color: var(--bg-secondary);
+}
+
+.product-detail .product-info {
+    margin-bottom: 1.5em;
+}
+
+.product-detail .label {
+    font-weight: 500;
+    margin-bottom: 1em;
+}
+
+.product-detail .table td[scope="row"] {
+    font-weight: 400;
+}
+
+
+/*============= gallery ============= */
+
+.gallery {
+    position: relative;
+}
+
+.gallery .img-anim {
+    margin-bottom: 1em;
+}
+
+.gallery .img {
+    background-size: cover;
+    transition: all 0.4s;
+}
+
+.gallery .arrow-next,
+.gallery .arrow-prev {
+    position: absolute;
+    font-size: 48px;
+    top: 42%;
+    bottom: 50%;
+    padding: 0 0.25em;
+    margin: -0.5em 0;
+}
+
+.gallery .arrow-next {
+    right: 0;
+}
+
+@media only screen and (min-width: 62em) {
+    .gallery .arrow-next,
+    .gallery .arrow-prev {
+        top: 50%;
+    }
+}
+
+.gallery-nav {
+    margin-bottom: 1em;
+}
+
+
+/*============= feedback =============*/
+
+.feedback-list {
+    display: flex;
+    overflow: auto;
+    flex-wrap: nowrap;
+}
+
+#feedbackForm .rating-form {
+    margin-bottom: 1em;
+}
+
+#feedbackForm .rating-form input {
+    width: inherit !important;
+    margin-right: 1em;
+    display: inline-block;
+}
+
+#feedbackForm .btn {
+    padding: 0.6em 1.5em;
+    font-weight: 500;
+    background-color: var(--impress);
+    color: var(--bg-primary);
+}
+
+#feedbackForm .btn:hover {
+    background-color: var(--bg-primary);
+    color: var(--primary);
+}
+
+.feedback-item .user-name {
+    padding-right: 1em;
+    font-weight: 500;
+}

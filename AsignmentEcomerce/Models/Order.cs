@@ -9,11 +9,6 @@ namespace AsignmentEcomerce.Models
 {
     public class Order
     {
-        public Order()
-        {
-            this.OrderDetails = new HashSet<OrderDetails>();
-
-        }
         [Key]
         public int IDorder { get; set; }
         [Required]

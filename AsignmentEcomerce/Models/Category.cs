@@ -8,10 +8,6 @@ namespace AsignmentEcomerce.Models
 {
     public class Category
     {
-        public Category()
-        {
-            this.Product = new HashSet<Product>();
-        }
         [Key]
         public int IDCategory { get; set; }
         [Required]

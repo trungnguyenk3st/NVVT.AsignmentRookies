@@ -16,5 +16,10 @@ namespace AsignmentEcomerce.Data
         public DbSet<Category> Categorys { get; set; }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+
+        public DbSet<RatingProduct> RatingProducts { get; set; }
+
     }
 }

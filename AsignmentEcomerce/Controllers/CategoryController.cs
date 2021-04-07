@@ -25,7 +25,7 @@ namespace AsignmentEcomerce.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<CategoryVm>>> GetCategorys()
+        public async Task<ActionResult<IEnumerable<CategoryVm>>> GetCategory()
         {
             return await _context.Categorys
                 .Select(x => new CategoryVm { IDCategory = x.IDCategory, NameCategory = x.NameCategory})

@@ -61,7 +61,7 @@ namespace AsignmentEcomerce.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<ProductVm>>> GetProduct()
+        public async Task<ActionResult<IEnumerable<ProductVm>>> GetProducts()
         {
             var products = await _context.Products.Select(x =>
                 new

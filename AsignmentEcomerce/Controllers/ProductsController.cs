@@ -7,115 +7,119 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AsignmentEcomerce.Data;
 using AsignmentEcomerce.Models;
+using AsignmentEcomerce.Shared;
+using Microsoft.AspNetCore.Authorization;
+using AsignmentEcomerce.Services;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using System.Net.Http.Headers;
+using System.IO;
 
 namespace AsignmentEcomerce.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[Controller]")]
+    [Authorize("Bearer")]
     public class ProductsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IStorageService _storageService;
+        private readonly ILogger _logger;
+        private static readonly ActivitySource DemoSource = new ActivitySource("OTel.Demo");
 
-        public ProductsController(ApplicationDbContext context)
+        public ProductsController(ApplicationDbContext context, IStorageService storageService, ILogger<ProductsController> logger)
         {
             _context = context;
+            _storageService = storageService;
+            _logger = logger;
         }
 
-        // GET: Products
-        public async Task<IActionResult> List()
-        {
-            var applicationDbContext = _context.Products.Include(p => p.Category);
-            return Ok(await applicationDbContext.ToListAsync());
-        }
-
-        // GET: Products/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> Details(int? id)
+        [AllowAnonymous]
+        public async Task<ActionResult<ProductVm>> GetProduct(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Products
-                .Include(p => p.Category)
-                .FirstOrDefaultAsync(m => m.IDProduct == id);
+            var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
 
-            return Ok(product);
+            var productVm = new ProductVm
+            {
+                IDProduct = product.IDProduct,
+                NameProduct = product.NameProduct,
+                Description = product.Description,
+                UnitPrice = product.UnitPrice
+            };
+
+            productVm.ImageUrl = _storageService.GetFileUrl(product.Image);
+            _logger.LogInformation("get product");
+
+            return productVm;
         }
 
-        // POST: Products/Createwant to bind to.
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<ProductVm>>> GetProduct()
+        {
+            var products = await _context.Products.Select(x =>
+                new
+                {
+                    x.IDProduct,
+                    x.NameProduct,
+                    x.UnitPrice,
+                    x.Description,
+                    x.Image
+                }).ToListAsync();
+
+            var productVms = products.Select(x =>
+                new ProductVm
+                {
+                    IDProduct = x.IDProduct,
+                    NameProduct = x.NameProduct,
+                    UnitPrice = x.UnitPrice,
+                    Description = x.Description,
+                    ImageUrl = _storageService.GetFileUrl(x.Image)
+                }).ToList();
+
+            _logger.LogInformation("get products");
+            using (var activity = DemoSource.StartActivity("This is sample activity"))
+            {
+                _logger.LogInformation("Hello, World!");
+            }
+
+            return productVms;
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( Product product)
+        public async Task<IActionResult> PostProduct([FromForm] ProductCreateRequest productCreateRequest)
         {
-            if (ModelState.IsValid)
+            var product = new Product
             {
-                var date = DateTime.Now;
-                product.CreateDate = date;
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return Ok(product);
-        }
+                NameProduct = productCreateRequest.NameProduct,
+                Description = productCreateRequest.Description,
+                UnitPrice = productCreateRequest.UnitPrice,
+                IDCategory = productCreateRequest.IDCategory
+            };
 
-       
-
-        // POST: Products/Edit/5
-        [HttpPut]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,  Product product)
-        {
-            if (id != product.IDProduct)
+            if (productCreateRequest.ImageUrl != null)
             {
-                return NotFound();
+                product.Image = await SaveFile(productCreateRequest.ImageUrl);
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var date = DateTime.Now;
-                    product.UpdateDate = date;
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.IDProduct))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return Ok(product);
-        }
-
-
-        // POST: Products/Delete/5
-        [HttpDelete]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var product = await _context.Products.FindAsync(id);
-            _context.Products.Remove(product);
+            _context.Products.Add(product);
             await _context.SaveChangesAsync();
-            return Ok(product);
+
+            return CreatedAtAction(nameof(GetProduct), new { id = product.IDProduct }, null);
         }
 
-        private bool ProductExists(int id)
+        private async Task<string> SaveFile(IFormFile file)
         {
-            return _context.Products.Any(e => e.IDProduct == id);
+            var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
+            await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
+            return fileName;
         }
     }
 }

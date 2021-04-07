@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AsignmentEcomerce.Models;
+using AsignmentEcomerce.Services;
 
 namespace AsignmentEcomerce
 {
@@ -72,8 +73,12 @@ namespace AsignmentEcomerce
                 
 
             });
-
-            services.AddControllersWithViews();
+            services.AddScoped<IStorageService, FileStorageService>();
+                services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Rookie Shop API", Version = "v1" });

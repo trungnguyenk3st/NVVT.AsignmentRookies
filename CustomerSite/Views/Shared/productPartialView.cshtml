@@ -1,0 +1,177 @@
+﻿<section class="products-section">
+    <h2>Our Products</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do<br /> eiusmod Lorem ipsum dolor sit amet.</p>
+</section>
+<div class="list-product-wrapper section">
+    <div class="container-fluid">
+        <div class="row">
+            <!------ filter ----->
+            <div class="col-12 col-lg-3">
+                <details>
+                    <summary class="bold text-4 upper-case" style="margin-bottom: 1em">
+                        Filter products
+                    </summary>
+                    <form id="filter-form">
+                        <input type="checkbox" id="vehicle1" name="jacket" value="1" />
+                        <label for="vehicle1">Adidas</label><br />
+                        <input type="checkbox" id="vehicle2" name="t-short" value="2" />
+                        <label for="vehicle2">Nike</label><br />
+                        <input type="checkbox" id="vehicle3" name="t-short" value="3" />
+                        <label for="vehicle2">Converse</label><br />
+                        <!------  ----->
+                        <hr style="margin-bottom: 1.5em; width: 60%; margin-left: 0" />
+                        <button class="btn btn-sm bg-black white" type="submit" style="margin-right: 1em">
+                            Apply
+                        </button>
+                        <button class="btn btn-sm bg-seconday black" type="reset">
+                            Reset
+                        </button>
+                    </form>
+                </details>
+            </div>
+            <!------ product----->
+            <div class="col-12 col-lg-9">
+                <!------ order ----->
+                <!-- <div class="order-by">
+                    <div class="row align-items-top justify-content-between">
+                        <div style="padding-left: 15px">12 products</div>
+                        <div class="dropdown">
+                            <div class="select" style="padding-top: 0">
+                                <span style="font-weight: 500">Order by</span>
+                                <i class="las la-angle-down"></i>
+                            </div>
+                            <input id="filter" type="hidden" name="filter" />
+                            <ul class="dropdown-menu">
+                                <li value="0"><a href="">High</a></li>
+                                <li value="0"><a href="">Low</a></li>
+                                <li value="0"><a href="">Popular</a></li>
+                                <li value="0"><a href="">Popular</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> -->
+                <!------ list ----->
+                <div id="list-product">
+                    <div class="row">
+                        <div class="col-6 col-lg-4">
+                            <div class="product-item" data-itemid="1">
+                                <span class="product-sale">- 30%</span>
+                                <a product-link href="/">
+                                    <div class="product-img">
+                                        <div class="img">
+                                            <img src="./images/air-jordan-1-low-2.jpeg" alt="" srcset="" />
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <p product-name class="mb-none bold">Product 1</p>
+                                        <p>This is a description of product 1</p>
+                                        <div class="rating">
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="lar la-star"></i>
+                                        </div>
+                                        <p class="price">3.000.000 VND</p>
+                                        <button type="button" class="btn btn-primary">Add to Cart</button>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <div class="product-item" data-itemid="1">
+                                <span class="product-sale">- 30%</span>
+                                <a product-link href="/">
+                                    <div class="product-img">
+                                        <div class="img">
+                                            <img src="./images/air-jordan-1-low-2.jpeg" alt="" srcset="" />
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <p product-name class="mb-none bold">Product 1</p>
+                                        <p>This is a description of product 1</p>
+                                        <div class="rating">
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="lar la-star"></i>
+                                        </div>
+                                        <p class="price">3.000.000 VND</p>
+                                        <button type="button" class="btn btn-primary">Add to Cart</button>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <div class="product-item" data-itemid="1">
+                                <span class="product-sale">- 30%</span>
+                                <a product-link href="/">
+                                    <div class="product-img">
+                                        <div class="img">
+                                            <img src="./images/air-jordan-1-low-2.jpeg" alt="" srcset="" />
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <p product-name class="mb-none bold">Product 1</p>
+                                        <p>This is a description of product 1</p>
+                                        <div class="rating">
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="las la-star"></i>
+                                            <i class="lar la-star"></i>
+                                        </div>
+                                        <p class="price">3.000.000 VND</p>
+                                        <button type="button" class="btn btn-primary">Add to Cart</button>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!------ paginaton ----->
+
+                    </div>
+                </div>
+                <div class="pagination">
+                    <a class="page-item active" href="">1</a>
+                    <a class="page-item" href="">2</a>
+                    <a class="page-item" href="">3</a>
+                    <a class="page-item" href="">4</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- footer -->
+        <!--<footer class="footer-section">
+            <div class="footer-container">
+                <div class="menu">
+                    <h2>Trung Shop</h2>
+                    <div class="menu-items">
+                        <i class="fab fa-facebook-square"><a class="footer-link" href="#"> Trung Nguyen</a></i>
+                        <i class="fab fa-instagram-square"><a class="footer-link" href="#"> Trung Nguyen</a></i>
+                        <i class="fab fa-twitter-square"><a class="footer-link" href="#"> Trung Nguyen</a></i>
+                        <i class="fab fa-pinterest-square"><a class="footer-link" href="#"> Trung Nguyen</a></i>
+                    </div>
+                </div>
+                <div class="menu">
+                    <h2>Products </h2>
+                    <div class="menu-items">
+                        <a href="#">Men's Shoes</a>
+                        <a href="#">Women's Shoes</a>
+                        <a href="#">Popular Dress</a>
+                        <a href="#">Sport Shoes</a>
+                    </div>
+                </div>
+                <div class="menu">
+                    <h2>Further Info</h2>
+                    <div class="menu-items">
+                        <a href="#">Home</a>
+                        <a href="#">About</a>
+                        <a href="#">Contact</a>
+                        <a href="#">FAQs</a>
+                    </div>
+                </div>
+            </div>-->

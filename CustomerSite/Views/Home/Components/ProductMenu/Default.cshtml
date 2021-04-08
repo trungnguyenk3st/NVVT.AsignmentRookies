@@ -1,0 +1,58 @@
+﻿@model IList<AsignmentEcomerce.Shared.ProductVm>
+<style>
+    a.btn.btn-primary {
+        display: block;
+        margin: auto;
+    }
+
+    .card {
+        width: 15rem;
+    }
+
+    .card-title {
+        text-align: center;
+    }
+
+        .card-title:hover {
+            color: red;
+        }
+
+    img {
+        padding: 1rem;
+    }
+
+    .price {
+        font-weight: 100;
+    }
+
+    .card-description {
+        color: black;
+        font-style: italic;
+    }
+
+    div.section_title.text-center {
+        margin-top: 70px;
+        margin-bottom: 30px;
+    }
+</style>
+<div class="section_title text-center">
+    <h3>New Pokemon's Games 2021!</h3>
+</div>
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <a asp-action="Details" asp-controller="Product" asp-route-id="@product.IDProduct">
+            <div class="col">
+                <div class="card">
+                    <img src="@Config.ApiUrl@product.ImageUrl" class="card-img-top" alt="Image game." />
+                    <div class="card-body">
+                        <h5 class="card-title">@product.NameProduct</h5>
+                        <p class="card-description">@product.Description</p>
+                        <p class="price">Price: $@product.UnitPrice</p>
+                        <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="BuyNow" asp-route-id="@product.IDProduct">Buy Now!</a>
+                    </div>
+                </div>
+            </div>
+        </a>}
+</div>
+

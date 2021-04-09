@@ -1,0 +1,53 @@
+﻿
+@model AsignmentEcomerce.Shared.ProductVm
+
+
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<!-- CSS here -->
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="assets/css/flaticon.css">
+<link rel="stylesheet" href="assets/css/slicknav.css">
+<link rel="stylesheet" href="assets/css/animate.min.css">
+<link rel="stylesheet" href="assets/css/magnific-popup.css">
+<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="assets/css/themify-icons.css">
+<link rel="stylesheet" href="assets/css/slick.css">
+<link rel="stylesheet" href="assets/css/nice-select.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-4">
+        <img src="@Config.ApiUrl/@Model.ImageUrl" class="card-img-top" alt="Image game." style="padding: 3rem" />
+    </div>
+    <div class="col-4" style="padding-top: 3rem">
+        <h3 class="product-name">
+            @Model.NameProduct
+        </h3>
+        <hr />
+        <p>
+            <span class="item-title">Category: @Model.NameProduct</span>
+        </p>
+
+
+        <p>
+            <span class="item-title">Description: @Model.Description</span>
+        </p>
+        <p>
+            <span class="item-title">Quantity: @Model.Quantity</span>
+        </p>
+        <p>
+            <span class="item-title">Price: $@Model.UnitPrice</span>
+        </p>
+        <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="BuyNow">
+            Buy Now!
+        </a>
+    </div>
+</div>

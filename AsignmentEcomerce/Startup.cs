@@ -73,7 +73,7 @@ namespace AsignmentEcomerce
                 
 
             });
-            services.AddScoped<IStorageService, FileStorageService>();
+            services.AddTransient<IStorageService, FileStorageService>();
                 services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                 {

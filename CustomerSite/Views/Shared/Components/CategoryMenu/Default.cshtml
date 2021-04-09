@@ -1,0 +1,13 @@
+﻿
+@model IList<AsignmentEcomerce.Shared.CategoryVm>
+
+<ul class="submenu">
+    @foreach (var category in Model)
+    {
+<li>
+    <a asp-action="ShowByCategory" asp-controller="Product" asp-route-id="@category.IDCategory">
+        @category.IDCategory
+    </a>
+</li>
+}
+</ul>

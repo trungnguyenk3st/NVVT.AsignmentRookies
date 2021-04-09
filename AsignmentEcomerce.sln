@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsignmentEcomerce", "Asignm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerSite", "CustomerSite\CustomerSite.csproj", "{014F67A6-9F01-40D2-9668-5423966941C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsignmentEcomerce.Shared", "AsignmentEcomerce.Shared\AsignmentEcomerce.Shared.csproj", "{817988AD-B284-4A32-9313-526B5C899E3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsignmentEcomerce.Shared", "AsignmentEcomerce.Shared\AsignmentEcomerce.Shared.csproj", "{817988AD-B284-4A32-9313-526B5C899E3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

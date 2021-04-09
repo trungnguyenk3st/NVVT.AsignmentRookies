@@ -9,6 +9,8 @@
 	  
     <PackageReference Include="IdentityModel" Version="5.1.0" />
 	  
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+	  
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.4" />
@@ -16,6 +18,14 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4" />
     <PackageReference Include="Microsoft.OpenApi" Version="1.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AsignmentEcomerce.Shared\AsignmentEcomerce.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Shared\Components\NewFolder\" />
   </ItemGroup>
 
 </Project>

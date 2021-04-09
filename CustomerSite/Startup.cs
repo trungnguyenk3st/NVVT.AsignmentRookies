@@ -15,6 +15,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Http;
+using CustomerSite.Services;
+using CustomerSite.Services.Product;
+using CustomerSite.Services.Category;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace CustomerSite
 {
@@ -60,7 +64,12 @@ namespace CustomerSite
                     //    RoleClaimType = "role"
                     //};
                 });
+            services.AddHttpClient();
+            services.AddHttpClient<IProductApiClient, ProductApiClient>();
+            services.AddHttpClient<ICategoryApiClient, CategoryApiClient>();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            services.AddDistributedMemoryCache();
             services.AddControllersWithViews();
         }
 

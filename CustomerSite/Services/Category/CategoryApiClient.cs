@@ -20,7 +20,7 @@ namespace CustomerSite.Services.Category
 
         public async Task<IList<CategoryVm>> GetCategory()
         {
-            var response = await _client.GetAsync("api/category");
+            var response = await _client.GetAsync("https://localhost:44342/api/category");
 
             response.EnsureSuccessStatusCode();
 

@@ -24,8 +24,4 @@
     <ProjectReference Include="..\AsignmentEcomerce.Shared\AsignmentEcomerce.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Shared\Components\NewFolder\" />
-  </ItemGroup>
-
 </Project>

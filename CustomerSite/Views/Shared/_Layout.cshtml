@@ -55,11 +55,8 @@
                                     <li><a href="shop.html">shop</a></li>
                                     <li><a href="about.html">about</a></li>
                                     <li class="hot">
-                                        <a href="#">Latest</a>
-                                        <ul class="submenu">
-                                            <li><a href="shop.html"> Product list</a></li>
-                                            <li><a href="product_details.html"> Product Details</a></li>
-                                        </ul>
+                                        <a href="#">Caterogy</a>
+                                         @await Component.InvokeAsync("CategoryMenu")
                                     </li>
                                     <li>
                                         <a href="blog.html">Blog</a>
@@ -90,7 +87,7 @@
                                         <span class="flaticon-search"></span>
                                     </div>
                                 </li>
-                                <li> <a href="login.html"><span class="flaticon-user"></span></a></li>
+                                <li> <partial name="_LoginPartial" /></li>
                                 <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
                             </ul>
                         </div>
@@ -107,6 +104,9 @@
     <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
+
+           
+
         </main>
     </div>
 

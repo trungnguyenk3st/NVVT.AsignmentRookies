@@ -17,7 +17,12 @@ namespace AsignmentEcomerce.Models
 
         public string Comment { get; set; }
 
-     
+        public int TotalStar { get; set; }
+
+        [ForeignKey("ApplicationUsers")]
+        public string ApplicationUserId { get; set; }
+        public virtual User ApplicationUser { get; set; }
+
         [ForeignKey("Product")]
         public int IDProduct { get; set; }
      

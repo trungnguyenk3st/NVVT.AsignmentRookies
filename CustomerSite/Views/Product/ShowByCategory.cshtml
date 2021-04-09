@@ -1,57 +1,47 @@
-﻿@model IList<AsignmentEcomerce.Shared.ProductVm>
-<style>
-    a.btn.btn-primary {
-        display: block;
-        margin: auto;
-    }
-
-    .card {
-        width: 15rem;
-    }
-
-    .card-title {
-        text-align: center;
-    }
-
-        .card-title:hover {
-            color: red;
-        }
-
-    img {
-        padding: 1rem;
-    }
-
-    .price {
-        font-weight: 100;
-    }
-
-    .card-description {
-        color: black;
-        font-style: italic;
-    }
-
-    div.section_title.text-center {
-        margin-top: 70px;
-        margin-bottom: 30px;
-    }
-</style>
-<div class="section_title text-center">
-    <h3>List product!</h3>
-</div>
-<div class="row">
-    @foreach (var product in Model)
-    {
-        <a asp-action="Details" asp-controller="Product" asp-route-id="@product.IDProduct">
-            <div class="col">
-                <div class="card">
-                    <img src="~/user-content/@product.ImageUrl" class="card-img-top" alt="Image game." />
-                    <div class="card-body">
-                        <h5 class="card-title">@product.NameProduct</h5>
-                        <p class="card-description">@product.Description</p>
-                        <p class="price">Price: $@product.UnitPrice</p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a>
-                    </div>
+﻿<section class="new-product-area section-padding30">
+    <div class="container">
+        <!-- Section tittle -->
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-10">
+                <div class="section-tittle mb-70 text-center">
+                    <h2>Products Item</h2>
+                   
                 </div>
             </div>
-        </a>}
-</div>
+        </div>
+
+        <div class="row">
+            @foreach (var product in Model)
+            {
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                    <a asp-action="Details" asp-controller="Product" asp-route-id="@product.IDProduct">
+                        <div class="single-new-pro mb-30 text-center">
+
+                            <div class="product-img">
+                                <img src="@ConfigUrl.ApiUrl/@product.ImageUrl" alt="Image game." />
+                            </div>
+                            <div class="product-caption">
+                                <h5 class="product-title">@product.NameProduct</h5>
+                                <p class="product-description">@product.Description</p>
+                                <p class="price">Price: $@product.UnitPrice</p>
+                                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="BuyNow" asp-route-id="@product.IDProduct">Buy Now!</a>
+                            </div>
+
+
+                        </div>
+                    </a>
+                </div>
+            }
+
+        </div>
+
+        <!------ paginaton ----->
+        <div class="pagination">
+            <a class="page-item active" href="">1</a>
+            <a class="page-item" href="">2</a>
+            <a class="page-item" href="">3</a>
+            <a class="page-item" href="">4</a>
+        </div>
+    </div>
+</section>
+

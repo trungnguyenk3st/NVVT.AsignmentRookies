@@ -92,6 +92,23 @@ namespace AsignmentEcomerce.Controllers
             return productVms;
         }
 
+        [HttpGet("category/{CategoryId}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<ProductVm>>> GetProductByCategory(int CategoryId)
+        {
+            return await _context.Products.Include(p => p.Category).Where(p => p.IDCategory == CategoryId)
+                .Select(x => new ProductVm
+                {
+                    IDProduct = x.IDProduct,
+                    NameProduct = x.NameProduct,
+                    ImageUrl = x.Image,
+                    Description = x.Description,
+
+                    NameCategory = x.Category.NameCategory,
+                })
+                .ToListAsync();
+        }
+
         [HttpPost]
         public async Task<IActionResult> PostProduct([FromForm] ProductCreateRequest productCreateRequest)
         {

@@ -15,6 +15,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
 using System.IO;
+using AsignmentEcomerce.Services.Repositories;
 
 namespace AsignmentEcomerce.Controllers
 {
@@ -26,13 +27,15 @@ namespace AsignmentEcomerce.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IStorageService _storageService;
         private readonly ILogger _logger;
+        private readonly IRateRepository _rateRepository;
         private static readonly ActivitySource DemoSource = new ActivitySource("OTel.Demo");
 
-        public ProductsController(ApplicationDbContext context, IStorageService storageService, ILogger<ProductsController> logger)
+        public ProductsController(ApplicationDbContext context, IStorageService storageService, ILogger<ProductsController> logger, IRateRepository rateRepository)
         {
             _context = context;
             _storageService = storageService;
             _logger = logger;
+            _rateRepository = rateRepository;
         }
 
         [HttpGet("{id}")]

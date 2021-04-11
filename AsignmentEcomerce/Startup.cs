@@ -17,6 +17,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AsignmentEcomerce.Models;
 using AsignmentEcomerce.Services;
+using AsignmentEcomerce.Services.Repositories;
 
 namespace AsignmentEcomerce
 {
@@ -74,7 +75,8 @@ namespace AsignmentEcomerce
 
             });
             services.AddTransient<IStorageService, FileStorageService>();
-                services.AddControllersWithViews()
+            services.AddTransient<IRateRepository, RateRepository>();
+            services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;

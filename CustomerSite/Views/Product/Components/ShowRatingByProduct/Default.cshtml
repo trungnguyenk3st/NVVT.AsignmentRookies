@@ -1,0 +1,46 @@
+﻿@model IList<AsignmentEcomerce.Shared.RatingVm>
+<style>
+    .avatar {
+        vertical-align: middle;
+        border-radius: 50%;
+        display: block;
+        margin: auto;
+        width: 40%;
+    }
+
+    .col > img {
+        vertical-align: middle;
+        border-radius: 10px;
+        width: 220px;
+    }
+
+    .card {
+        width: 12rem;
+    }
+</style>
+<div class="section_title text-center">
+    <h4>Comments</h4>
+</div>
+<div class="row">
+    @foreach (var rating in Model)
+    {
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <img src="~/user-content/avatar.png" alt="Avatar" class="avatar"/>
+
+                    <p class="card-date">@rating.Date</p>
+                    <p class="card-comment">@rating.Comment</p>
+                    <span>
+                        @{ for (int i = 1; i <= rating.TotalStar; i++)
+                            {
+                                <i class="fa fa-star" style="color:yellow"></i> }
+                            for (int i = 1; i <= 5 - rating.TotalStar; i++)
+                            {
+                                <i class="fa fa-star"></i> } }
+                    </span>
+                </div>
+            </div>
+        </div>
+    }
+</div>

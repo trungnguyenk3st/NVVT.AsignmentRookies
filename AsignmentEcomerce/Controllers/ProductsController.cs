@@ -15,6 +15,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
 using System.IO;
+using System.Security.Claims;
 using AsignmentEcomerce.Services.Repositories;
 
 namespace AsignmentEcomerce.Controllers

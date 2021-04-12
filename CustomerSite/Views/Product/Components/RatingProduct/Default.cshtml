@@ -1,0 +1,58 @@
+﻿@model AsignmentEcomerce.Shared.RatingVm
+
+
+<section class="latest-product-area latest-padding">
+    <div class="container">
+        <div class="row product-btn d-flex justify-content-between">
+            <div class="properties__button">
+                <!--Nav Button  -->
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Đánh giá sản phẩm</a>
+                    </div>
+                </nav>
+                <!--End Nav Button  -->
+            </div>
+
+        </div>
+        <!-- Nav Card -->
+        <div class="tab-content" id="nav-tabContent">
+            <!-- card one -->
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <form asp-action="Create" asp-controller="Ratings" method="post">
+                            <input type="hidden" asp-for="@Model.IDProduct" />
+                            <div class="form-group">
+                                <label for="email">Đánh giá sao </label>
+                                <span class="text-warning float-right" style=" margin-right: 150px;">
+                                    <i class="ratingStar fa fa-star" data-value="1"></i>
+                                    <i class="ratingStar far fa-star" data-value="2"></i>
+                                    <i class="ratingStar far fa-star" data-value="3"></i>
+                                    <i class="ratingStar far fa-star" data-value="4"></i>
+                                    <i class="ratingStar far fa-star" data-value="5"></i>
+                                </span>
+                                <input type="hidden" asp-for="@Model.TotalStar" />
+                                @*<input type="text" asp-for="@Model.comment" placeholder="Enter Feedback">*@
+                            <textarea rows="4" cols="50" type="text" asp-for="@Model.Comment">Enter text here...</textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Nav Card -->
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>$(".ratingStar").hover(function () {
+        $(".ratingStar").addClass("far").removeClass("fa");
+        $(this).addClass("fa").removeClass("far");
+        $(this).prevAll(".ratingStar").addClass("fa").removeClass("far");
+    });
+    $(".ratingStar").click(function () {
+        var starValue = $(this).attr("data-value");
+        $("#TotalStar").val(starValue);
+
+    });</script>

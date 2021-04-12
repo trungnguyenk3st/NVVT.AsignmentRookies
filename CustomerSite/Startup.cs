@@ -19,6 +19,7 @@ using CustomerSite.Services;
 using CustomerSite.Services.Product;
 using CustomerSite.Services.Category;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using CustomerSite.Services.RatingProduct;
 
 namespace CustomerSite
 {
@@ -68,6 +69,7 @@ namespace CustomerSite
             services.AddHttpClient<IProductApiClient, ProductApiClient>();
             services.AddHttpClient<ICategoryApiClient, CategoryApiClient>();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpClient<IRatingService, RatingService>();
 
             services.AddDistributedMemoryCache();
             services.AddControllersWithViews();

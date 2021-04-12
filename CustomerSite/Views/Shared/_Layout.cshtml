@@ -8,7 +8,8 @@
 
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
+    <!-- CSS here Rating -->
+    @*<link href="~/css/RateStyleSheet.css" rel="stylesheet" />*@
     <!-- CSS here -->
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/assets/css/owl.carousel.min.css">
@@ -21,8 +22,11 @@
     <link rel="stylesheet" href="~/assets/css/slick.css">
     <link rel="stylesheet" href="~/assets/css/nice-select.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-  
+
+
 
 
 </head>
@@ -56,7 +60,7 @@
                                     <li><a href="about.html">about</a></li>
                                     <li class="hot">
                                         <a href="#">Caterogy</a>
-                                         @await Component.InvokeAsync("CategoryMenu")
+                                        @await Component.InvokeAsync("CategoryMenu")
                                     </li>
                                     <li>
                                         <a href="blog.html">Blog</a>
@@ -105,7 +109,7 @@
         <main role="main" class="pb-3">
             @RenderBody()
 
-           
+
 
         </main>
     </div>
@@ -214,7 +218,12 @@
     </div>
     <!-- Search model end -->
     <!-- JS here -->
-    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script src="~/js/vendor/modernizr-3.5.0.min.js"></script>
+
     <script src="~/assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
     <script src="~/assets/js/vendor/jquery-1.12.4.min.js"></script>

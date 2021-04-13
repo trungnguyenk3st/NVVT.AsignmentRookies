@@ -1,11 +1,14 @@
-﻿<section class="new-product-area section-padding30">
+﻿@model IList<AsignmentEcomerce.Shared.ProductVm>
+
+
+
+<section class="new-product-area section-padding30">
     <div class="container">
         <!-- Section tittle -->
-        <div class="row justify-content-center">
-            <div class="col-xl-7 col-lg-8 col-md-10">
-                <div class="section-tittle mb-70 text-center">
-                    <h2>Products Item</h2>
-                   
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section-tittle mb-70">
+                    <h2>List Products</h2>
                 </div>
             </div>
         </div>
@@ -18,7 +21,7 @@
                         <div class="single-new-pro mb-30 text-center">
 
                             <div class="product-img">
-                                <img src="@ConfigUrl.ApiUrl/@product.ImageUrl" alt="Image game." />
+                                <img src="~/user-content/@product.ImageUrl" alt="Image game." />
                             </div>
                             <div class="product-caption">
                                 <h5 class="product-title">@product.NameProduct</h5>
@@ -35,13 +38,8 @@
 
         </div>
 
-        <!------ paginaton ----->
-        <div class="pagination">
-            <a class="page-item active" href="">1</a>
-            <a class="page-item" href="">2</a>
-            <a class="page-item" href="">3</a>
-            <a class="page-item" href="">4</a>
-        </div>
+
     </div>
 </section>
+
 

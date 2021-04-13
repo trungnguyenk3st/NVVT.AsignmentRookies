@@ -31,6 +31,12 @@ namespace CustomerSite.Controllers
             var result = await _productApiClient.GetProductByCategory(id);
             return View(result);
         }
+        public async Task<IActionResult> ProductList()
+        {
+            var result = await _productApiClient.GetProducts();
+            return View(result);
+        }
+
 
       
     }

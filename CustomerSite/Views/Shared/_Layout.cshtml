@@ -49,50 +49,38 @@
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><img src="assets/img/logo/logo.png" alt=""></a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="shop.html">shop</a></li>
-                                    <li><a href="about.html">about</a></li>
+                                    <li> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                                    <li> <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="ProductList">Shop</a></li>
+                                    <li> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                                     <li class="hot">
                                         <a href="#">Caterogy</a>
                                         @await Component.InvokeAsync("CategoryMenu")
                                     </li>
+                                   
                                     <li>
-                                        <a href="blog.html">Blog</a>
-                                        <ul class="submenu">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
-                                        </ul>
+                                        <a href="#">Cart</a>
+                                       
                                     </li>
-                                    <li>
-                                        <a href="#">Pages</a>
-                                        <ul class="submenu">
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="cart.html">Cart</a></li>
-                                            <li><a href="elements.html">Element</a></li>
-                                            <li><a href="confirmation.html">Confirmation</a></li>
-                                            <li><a href="checkout.html">Product Checkout</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Home</a></li>
                                 </ul>
                             </nav>
                         </div>
                         <!-- Header Right -->
                         <div class="header-right">
                             <ul>
-                                <li>
+                                <li> 
                                     <div class="nav-search search-switch">
-                                        <span class="flaticon-search"></span>
+                                        <span class="flaticon-shopping-cart"></span>
                                     </div>
                                 </li>
                                 <li> <partial name="_LoginPartial" /></li>
-                                <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
+                                @*<li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>*@
                             </ul>
                         </div>
                     </div>

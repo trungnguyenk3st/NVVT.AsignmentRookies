@@ -13,6 +13,7 @@ namespace CustomerSite.Services
         Task<ProductVm> GetProduct(int id);
 
         Task<IList<ProductVm>> GetProductByCategory(int id);
-
+      
+        Task<IList<ProductVm>> GetProductByArray(List<int> temp);
     }
 }

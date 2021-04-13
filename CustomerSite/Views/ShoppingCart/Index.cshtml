@@ -1,0 +1,98 @@
+﻿@model IList<AsignmentEcomerce.Shared.ProductVm>
+@using AsignmentEcomerce.Shared
+
+@{ 
+    int Total = 0;
+    int Quantity = 0; 
+}
+<style>
+    table tr .info {
+        text-align: center;
+        padding-top: 40px;
+    }
+</style>
+
+@if (Model.Count != 0)
+{
+    <form method="post">
+        <br /><br />
+              <h2 class="text-info">My Shopping cart</h2>
+        <br />
+        <div class="container border border-secondary rounded " style="padding: 15px; border-radius:5px; border:1px solid #bbb9b9">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped rounded" style="width:100%; border-radius:5px; border:1px solid #bbb9b9 ">
+                        <tr class="table-info">
+                            <th style="text-align:center; width:20%">
+                                <label>Image</label>
+                            </th>
+                            <th style="text-align:center;">
+                                <label>Name</label>
+                            </th>
+                            <th style="text-align:center;">
+                                <label>Category</label>
+                            </th>
+                            <th style="text-align:center;">
+                                <label>UnitPrice</label>
+                            </th>
+                            <th style="text-align:center;"></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                    <tr style="padding:50px;">
+                        <td>
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@item.IDProduct">
+                                <img src="@item.ImageUrl" style="width:60px; height:90px; margin:auto; display:block; border-radius:5px; border:1px solid #bbb9b9" />
+                            </a>
+                        </td>
+                        <td class="info">
+                            @Html.DisplayFor(x => item.NameProduct)
+                        </td>
+                        <td class="info">
+                            @Html.DisplayFor(x => item.NameCategory)
+                        </td>
+                        @{
+
+                            Total += (int)item.UnitPrice;
+                            Quantity++;
+                        }
+                        <td class="info">
+                            $@Html.DisplayFor(x => item.UnitPrice)
+                        </td>
+                        <td class="info">
+                            <button type="submit" class="btn btn-danger" asp-action="remove" asp-route-id="@item.IDProduct">
+                                <i class="fas fa-trash-alt">Remove</i>
+                            </button>
+                        </td>
+                    </tr>
+                        }
+                        <tr>
+                            <td style="padding-left: 80px">
+                                @Quantity items.
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="padding-left: 55px">
+                                Total: $@Total
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <button type="submit" id="btnPlaceOrder" class="btn btn-success">Check Out</button>
+            </div>
+        </div>
+    </form>
+}
+else
+{
+    <img src="~/img/empty-cart.png" style="display: block; margin: auto; width: 50rem;" />
+    <div class="info" style="text-align: center">
+        <h3>The shopping cart is empty!</h3>
+        <a asp-controller="Home" asp-action="Index">Shopping continue</a>
+    </div>
+}

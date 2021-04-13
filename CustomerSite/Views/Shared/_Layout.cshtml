@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@*@model AsignmentEcomerce.Shared.ProductVm*@
+@using Microsoft.AspNetCore.Http
+@using CustomerSite.Extentions
+
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,7 +28,7 @@
     <link rel="stylesheet" href="~/assets/css/nice-select.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 
 
@@ -62,10 +67,10 @@
                                         <a href="#">Caterogy</a>
                                         @await Component.InvokeAsync("CategoryMenu")
                                     </li>
-                                   
+
                                     <li>
                                         <a href="#">Cart</a>
-                                       
+
                                     </li>
                                     <li> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Home</a></li>
                                 </ul>
@@ -74,11 +79,35 @@
                         <!-- Header Right -->
                         <div class="header-right">
                             <ul>
-                                <li> 
-                                    <div class="nav-search search-switch">
-                                        <span class="flaticon-shopping-cart"></span>
+                                <li>
+                                    @*<div class="nav-search search-switch">
+                                            <span class="flaticon-shopping-cart"></span>
+                                        </div>*@
+                                <li>
+                                    <div class="cart">
+                                        @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart") != null)
+                                        {
+                            <a asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                <span>
+                                    <i id="cart-product" class="fa fa-shopping-cart" aria-hidden="true"></i>
+
+                                    @{ var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart").Count; }
+
+                                    <span class="quantity">@count</span>
+                                </span>
+                            </a> }
+                        else
+                        {
+            <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                <span>
+                    <i id="cart-product" class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    <span class="quantity">0</span>
+                </span>
+            </a>}
                                     </div>
+
                                 </li>
+
                                 <li> <partial name="_LoginPartial" /></li>
                                 @*<li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>*@
                             </ul>

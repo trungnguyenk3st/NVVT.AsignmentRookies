@@ -1,6 +1,8 @@
 ﻿@model AsignmentEcomerce.Shared.ProductVm
 @using Microsoft.AspNetCore.Http
+@using CustomerSite.Extentions
 
+@inject IHttpContextAccessor HttpContextAccessor
 
 
 
@@ -47,9 +49,27 @@
         <p>
             <span class="item-title">Price: $@Model.UnitPrice</span>
         </p>
-        <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="BuyNow">
-            Buy Now!
-        </a>
+        <div class="add-to-box">
+            @{ bool isInBag = false;
+                List<int> lstCart = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart");
+                if (lstCart != null && lstCart.Contains(Model.IDProduct))
+                {
+                    isInBag = true;
+                } }
+            @if (Model.Quantity != 0)
+            {
+                @if (isInBag)
+                {
+                    <a asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@Model.IDProduct" class="btn btn-success">Remove</a> }
+                else
+                {
+                    <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@Model.IDProduct" class="btn btn-primary">Add to cart!</a>} }
+            else
+            {
+                @*<label class="btn btn-danger">Out stock </label>*@}
+            <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@Model.IDProduct" class="btn btn-primary">Add to cart!</a>
+        </div>
+
     </div>
 </div>
 

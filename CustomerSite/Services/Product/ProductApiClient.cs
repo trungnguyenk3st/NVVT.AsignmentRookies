@@ -37,9 +37,22 @@ namespace CustomerSite.Services.Product
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<IList<ProductVm>>();
         }
+        public async Task<IList<ProductVm>> GetProductByArray(List<int> temp)
+        {
+            List<ProductVm> lstProduct = new List<ProductVm>();
+            if (temp == null)
+                return lstProduct;
+            foreach (int id in temp)
+            {
+                var response = await _client.GetAsync("https://localhost:44342/api/products/" + id);
+                response.EnsureSuccessStatusCode();
+                lstProduct.Add(await response.Content.ReadAsAsync<ProductVm>());
+            }
+            return lstProduct;
+        }
 
-       
 
-       
+
+
     }
 }

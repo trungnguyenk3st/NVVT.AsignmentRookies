@@ -105,6 +105,7 @@ namespace AsignmentEcomerce.Controllers
                 {
                     IDProduct = x.IDProduct,
                     NameProduct = x.NameProduct,
+                    UnitPrice = x.UnitPrice,
                     ImageUrl = x.Image,
                     Description = x.Description,
 

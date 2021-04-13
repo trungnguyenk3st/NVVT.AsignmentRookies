@@ -70,6 +70,13 @@ namespace CustomerSite
             services.AddHttpClient<ICategoryApiClient, CategoryApiClient>();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddHttpClient<IRatingService, RatingService>();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
 
             services.AddDistributedMemoryCache();
             services.AddControllersWithViews();
@@ -96,6 +103,7 @@ namespace CustomerSite
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

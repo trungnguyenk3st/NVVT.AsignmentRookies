@@ -77,9 +77,13 @@ namespace AsignmentEcomerce
             services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<IRateRepository, RateRepository>();
             services.AddControllersWithViews()
+                .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+            services.AddControllersWithViews()
+
                 .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                  
                 });
             services.AddSwaggerGen(c =>
             {
@@ -131,6 +135,12 @@ namespace AsignmentEcomerce
 
             app.UseRouting();
 
+            app.UseCors(o=> {
+                o.AllowAnyMethod();
+                o.AllowAnyHeader();
+                o.AllowAnyOrigin();
+            });
+           
             app.UseIdentityServer();
             app.UseAuthorization();
 

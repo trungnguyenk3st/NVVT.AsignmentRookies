@@ -4,8 +4,10 @@ import { Switch, Route } from "react-router-dom";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Product from "./pages/products/Product";
 import Category from "./pages/categories/Category";
+import Order from "./pages/orders/Order";
 import User from "./pages/users/User";
 import NotMatch from "./pages/errors/NotMatch";
+
 
 export default function Routes(props) {
   return (

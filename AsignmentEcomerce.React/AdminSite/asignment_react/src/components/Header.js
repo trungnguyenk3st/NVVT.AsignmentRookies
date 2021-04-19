@@ -7,7 +7,7 @@ export default function Header(props) {
       <div className="float-left">
         <img width="40" src="./logo192.png" alt="" />
       </div>
-      <Button color="danger" className="float-right">
+      <Button color="link" className="float-right text-danger" size="sm">
         Sign Out
       </Button>
     </div>

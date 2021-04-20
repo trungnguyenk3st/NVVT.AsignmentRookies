@@ -143,5 +143,40 @@ namespace AsignmentEcomerce.Controllers
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
             return fileName;
         }
+        [HttpPut("{id}")]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> PutProduct(int id, ProductCreateRequest productCreateRequest)
+        {
+            var product = await _context.Products.FindAsync(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            product.NameProduct = productCreateRequest.NameProduct;
+            product.Image = productCreateRequest.Image;
+            product.UnitPrice = productCreateRequest.UnitPrice;
+            product.Description = productCreateRequest.Description;
+            product.IDCategory = productCreateRequest.IDCategory;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

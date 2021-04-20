@@ -16,6 +16,8 @@ namespace AsignmentEcomerce.Shared
 
         public double UnitPrice { get; set; }
         public string Description { get; set; }
+        public string Image { get; set; }
+
         public IFormFile ImageUrl { get; set; }
 
         public int IDCategory { get; set; }

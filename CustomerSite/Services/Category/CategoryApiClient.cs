@@ -13,14 +13,14 @@ namespace CustomerSite.Services.Category
           
         private readonly HttpClient _client;
 
-        public CategoryApiClient(HttpClient client)
+        public CategoryApiClient(IHttpClientFactory httpClientFactory)
         {
-            _client = client;
+            _client = httpClientFactory.CreateClient("host");
         }
 
         public async Task<IList<CategoryVm>> GetCategory()
         {
-            var response = await _client.GetAsync("https://localhost:44342/api/category");
+            var response = await _client.GetAsync("api/category");
 
             response.EnsureSuccessStatusCode();
 

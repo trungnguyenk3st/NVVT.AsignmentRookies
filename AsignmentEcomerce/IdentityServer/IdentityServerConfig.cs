@@ -22,9 +22,17 @@ namespace AsignmentEcomerce.IdentityServer
                   new ApiScope("rookieshop.api", "Rookie Shop API"),
              };
 
-        public static IEnumerable<Client> Clients =>
-            new List<Client>
+        public static IEnumerable<Client> Clients(Dictionary<string, string> clientUrls) =>
+            new[]
             {
+                 new Client
+                {
+                    ClientId = "ro.client",
+                    ClientName = "Resource Owner Client",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    AllowedScopes = { "api.myshop" }
+                },
                 // machine to machine client
                 new Client
                 {
@@ -44,9 +52,9 @@ namespace AsignmentEcomerce.IdentityServer
 
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:44307/signin-oidc" },
+                    RedirectUris = {  $"{clientUrls["Mvc"]}/signin-oidc" },
 
-                    PostLogoutRedirectUris = { "https://localhost:44307/signout-callback-oidc" },
+                    PostLogoutRedirectUris = {  $"{clientUrls["Mvc"]}/signout-callback-oidc" },
                     AlwaysIncludeUserClaimsInIdToken = true,
                     AlwaysSendClientClaims = true,
 
@@ -67,15 +75,51 @@ namespace AsignmentEcomerce.IdentityServer
                     RequireConsent = false,
                     RequirePkce = true,
 
-                    RedirectUris =           { $"https://localhost:44342/swagger/oauth2-redirect.html" },
-                    PostLogoutRedirectUris = { $"https://localhost:44342/swagger/oauth2-redirect.html" },
-                    AllowedCorsOrigins =     { $"https://localhost:44342" },
+                    RedirectUris =           { $"{clientUrls["Swagger"]}/swagger/oauth2-redirect.html" },
+                    PostLogoutRedirectUris = { $"{clientUrls["Swagger"]}/swagger/oauth2-redirect.html" },
+                    AllowedCorsOrigins =     { $"{clientUrls["Swagger"]}" },
+
+                    AllowedScopes = new List<string>
+                    {
+                        //IdentityServerConstants.StandardScopes.OpenId,
+                        //IdentityServerConstants.StandardScopes.Profile,
+                        "rookieshop.api"
+                    }
+                },
+                new Client
+                {
+                    ClientName = "react_code_client",
+                    ClientId = "react_code_client",
+                    AccessTokenType = AccessTokenType.Reference,
+                    AllowedGrantTypes = GrantTypes.Code,
+                    AllowAccessTokensViaBrowser = true,
+
+                    RequireClientSecret = false,
+                    RequireConsent = false,
+                    RequirePkce = true,
+
+                    RedirectUris = new List<string>
+                    {
+                        $"{clientUrls["React"]}/authentication/login-callback",
+                        $"{clientUrls["React"]}/silent-renew.html",
+                        $"{clientUrls["React"]}"
+                    },
+                    PostLogoutRedirectUris = new List<string>
+                    {
+                        $"{clientUrls["React"]}/unauthorized",
+                        $"{clientUrls["React"]}/authentication/logout-callback",
+                        $"{clientUrls["React"]}"
+                    },
+                    AllowedCorsOrigins = new List<string>
+                    {
+                        $"{clientUrls["React"]}"
+                    },
 
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "rookieshop.api"
+                         "rookieshop.api"
                     }
                 },
             };

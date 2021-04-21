@@ -31,11 +31,16 @@ namespace CustomerSite
         }
 
         public IConfiguration Configuration { get; }
+      /*  public static Dictionary<string, string> clientUrls;*/
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddHttpClient(opt => opt.BaseAddress = "https://localhost:44342/");
+            var domain = Configuration.GetSection("Domain");
+            var hostUri = domain["Default"];
+
+            Config.ApiUrl = hostUri;
+            ConfigUrl.ApiUrl = hostUri + domain["ImageUrl"];
 
             services.AddAuthentication(options =>
             {
@@ -45,7 +50,7 @@ namespace CustomerSite
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
-                    options.Authority = "https://localhost:44342";
+                    options.Authority = hostUri ;
                     options.RequireHttpsMetadata = false;
                     options.GetClaimsFromUserInfoEndpoint = true;
 

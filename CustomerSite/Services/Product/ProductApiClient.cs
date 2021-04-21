@@ -12,28 +12,28 @@ namespace CustomerSite.Services.Product
     {
         private readonly HttpClient _client;
 
-        public ProductApiClient(HttpClient client)
+        public ProductApiClient(IHttpClientFactory httpClientFactory)
         {
-            _client = client;
+            _client = httpClientFactory.CreateClient("host");
         }
 
         public async Task<IList<ProductVm>> GetProducts()
         {
-            var response = await _client.GetAsync("https://localhost:44342/api/products");
+            var response = await _client.GetAsync("/api/products");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<IList<ProductVm>>();
         }
 
         public async Task<ProductVm> GetProduct(int id)
         {
-            var response = await _client.GetAsync("https://localhost:44342/api/products/" + id);
+            var response = await _client.GetAsync("api/products/" + id);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<ProductVm>();
         }
 
         public async Task<IList<ProductVm>> GetProductByCategory(int id)
         {
-            var response = await _client.GetAsync("https://localhost:44342/api/products/category/" + id);
+            var response = await _client.GetAsync("products/category/" + id);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<IList<ProductVm>>();
         }
@@ -44,7 +44,7 @@ namespace CustomerSite.Services.Product
                 return lstProduct;
             foreach (int id in temp)
             {
-                var response = await _client.GetAsync("https://localhost:44342/api/products/" + id);
+                var response = await _client.GetAsync("api/products/" + id);
                 response.EnsureSuccessStatusCode();
                 lstProduct.Add(await response.Content.ReadAsAsync<ProductVm>());
             }

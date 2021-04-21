@@ -15,7 +15,7 @@ export default function Product() {
   }, []);
 
   //handle
-  const handleChangeCate = (val) => {
+  const handleChangeCate = () => {
     _cateSer.getList().then((resp) => {
       setCategory(resp.data);
       // console.log(resp.data);
@@ -25,7 +25,6 @@ export default function Product() {
   const handleCreate = () => setSelected({ Name: ""});
   const handleEdit = (item) => setSelected(item);
   const handleCancel = () => setSelected(null);
-
   const handleDelete = (itemId) => {
     let result = window.confirm("Delete this item?");
     if (result) {
@@ -39,11 +38,11 @@ export default function Product() {
     let result = window.confirm("Save the changed items?");
     if (result) {
       if (!data.idCategory) {
-        _cateSer.create(data).then((reps) => {
+        _cateSer.create(data).then((resp) => {
           handleChangeCate(data);
         });
       } else {
-        _cateSer.edit(data.idCategory, data).then((reps) => {
+        _cateSer.edit(data.idCategory, data).then((resp) => {
           setCategory(_updateViewItem(listCategory, data));
         });
       }

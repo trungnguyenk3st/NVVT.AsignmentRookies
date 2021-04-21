@@ -29,11 +29,11 @@ export default function ListCategory({
                 <th scope="row">{index + 1}</th>
                 <td>{item.nameCategory}</td>
                 <td className="text-right">
-                  <Button onClick={() => onEdit(item)} color="link">
+                  <Button onClick={() => onEdit && onEdit(item)} color="link">
                     Edit
                   </Button>
                   <Button
-                    onClick={() => onDelete(item.idCategory)}
+                    onClick={() => onDelete && onDelete(item.idCategory)}
                     color="link"
                     className="text-danger"
                   >

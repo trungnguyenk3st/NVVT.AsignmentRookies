@@ -43,7 +43,7 @@ export default function EditCategory({ itemEdit, onSave, onCancel }) {
             <Button color="primary" className="mr-3" onClick={handleSubmit}>
               Save
             </Button>
-            <Button color="danger" onClick={() => onCancel()}>
+            <Button color="danger" onClick={() => onCancel && onCancel()}>
               Cancel
             </Button>
           </div>

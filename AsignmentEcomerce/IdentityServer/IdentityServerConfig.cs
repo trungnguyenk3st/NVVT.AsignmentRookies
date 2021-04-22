@@ -40,7 +40,7 @@ namespace AsignmentEcomerce.IdentityServer
                     ClientSecrets = { new Secret("secret".Sha256()) },
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    // scopes that client has access to
+                    //// scopes that client has access to
                     AllowedScopes = { "rookieshop.api" }
                 },
 
@@ -52,9 +52,9 @@ namespace AsignmentEcomerce.IdentityServer
 
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = {  $"{clientUrls["Mvc"]}/signin-oidc" },
+                    RedirectUris = {$"{clientUrls["Mvc"]}/signin-oidc" },
 
-                    PostLogoutRedirectUris = {  $"{clientUrls["Mvc"]}/signout-callback-oidc" },
+                    PostLogoutRedirectUris = {$"{clientUrls["Mvc"]}/signout-callback-oidc" },
                     AlwaysIncludeUserClaimsInIdToken = true,
                     AlwaysSendClientClaims = true,
 
@@ -81,8 +81,8 @@ namespace AsignmentEcomerce.IdentityServer
 
                     AllowedScopes = new List<string>
                     {
-                        //IdentityServerConstants.StandardScopes.OpenId,
-                        //IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
                         "rookieshop.api"
                     }
                 },

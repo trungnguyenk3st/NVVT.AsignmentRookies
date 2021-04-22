@@ -30,9 +30,17 @@ namespace AsignmentEcomerce
 
         public IConfiguration Configuration { get; }
 
+   /*     public static Dictionary<string, string> clientUrls;*/
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var clientUrls = new Dictionary<string, string>
+            {
+                ["Mvc"] = Configuration["ClientUrl:Mvc"],
+                ["Swagger"] = Configuration["ClientUrl:Swagger"],
+                ["React"] = Configuration["ClientUrl:React"]
+            };
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -53,7 +61,7 @@ namespace AsignmentEcomerce
             })
                .AddInMemoryIdentityResources(IdentityServerConfig.IdentityResources)
                .AddInMemoryApiScopes(IdentityServerConfig.ApiScopes)
-               .AddInMemoryClients(IdentityServerConfig.Clients)
+              .AddInMemoryClients(IdentityServerConfig.Clients(clientUrls))
               .AddAspNetIdentity<IdentityUser>()
               .AddProfileService<CustomProfileService>()
                .AddDeveloperSigningCredential(); // not recommended for production - you need to store your key material 
@@ -74,6 +82,8 @@ namespace AsignmentEcomerce
                 
 
             });
+          /*  services.AddCorsOrigins(Configuration);*/
+
             services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<IRateRepository, RateRepository>();
             services.AddControllersWithViews()
@@ -139,8 +149,9 @@ namespace AsignmentEcomerce
                 o.AllowAnyMethod();
                 o.AllowAnyHeader();
                 o.AllowAnyOrigin();
+             
             });
-           
+            /*app.UseCors(AllowOrigins.OriginPolicy);*/
             app.UseIdentityServer();
             app.UseAuthorization();
 

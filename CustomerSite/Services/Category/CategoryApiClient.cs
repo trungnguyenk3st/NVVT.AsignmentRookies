@@ -24,7 +24,7 @@ namespace CustomerSite.Services.Category
 
             response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadFromJsonAsync<IList<CategoryVm>>();
+            return await response.Content.ReadAsAsync<IList<CategoryVm>>();
         }
     }
 

@@ -106,7 +106,7 @@ namespace AsignmentEcomerce.Controllers
                     IDProduct = x.IDProduct,
                     NameProduct = x.NameProduct,
                     UnitPrice = x.UnitPrice,
-                    ImageUrl = x.Image,
+                    ImageUrl = _storageService.GetFileUrl(x.Image),
                     Description = x.Description,
 
                     NameCategory = x.Category.NameCategory,
@@ -155,7 +155,7 @@ namespace AsignmentEcomerce.Controllers
             }
 
             product.NameProduct = productCreateRequest.NameProduct;
-            product.Image = productCreateRequest.Image;
+            product.Image = productCreateRequest.Image.ToString();
             product.UnitPrice = productCreateRequest.UnitPrice;
             product.Description = productCreateRequest.Description;
             product.IDCategory = productCreateRequest.IDCategory;

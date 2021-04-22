@@ -9,8 +9,5 @@ namespace CustomerSite.Services
     {
         public static string ApiUrl = "";
     }
-    public static class ConfigUrl
-    {
-        public static string ApiUrl = "";
-    }
+   
 }

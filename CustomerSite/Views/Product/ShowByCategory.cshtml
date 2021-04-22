@@ -16,25 +16,24 @@
         <div class="row">
             @foreach (var product in Model)
             {
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                    <a asp-action="Details" asp-controller="Product" asp-route-id="@product.IDProduct">
-                        <div class="single-new-pro mb-30 text-center">
+<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+    <a asp-action="Details" asp-controller="Product" asp-route-id="@product.IDProduct">
+        <div class="single-new-pro mb-30 text-center">
 
-                            <div class="product-img">
-                                <img src="~/user-content/@product.ImageUrl" alt="Image game." />
-                            </div>
-                            <div class="product-caption">
-                                <h5 class="product-title">@product.NameProduct</h5>
-                                <p class="product-description">@product.Description</p>
-                                <p class="price">Price: $@product.UnitPrice</p>
-                                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="BuyNow" asp-route-id="@product.IDProduct">Buy Now!</a>
-                            </div>
+            <div class="product-img">
+                <img src="@Config.ApiUrl/@product.ImageUrl" alt="Image game." />
+            </div>
+            <div class="product-caption">
+                <h5 class="product-title">@product.NameProduct</h5>
+                <p class="product-description">@product.Description</p>
+                <p class="price">Price: $@product.UnitPrice</p>
+                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="BuyNow" asp-route-id="@product.IDProduct">Buy Now!</a>
+            </div>
 
 
-                        </div>
-                    </a>
-                </div>
-            }
+        </div>
+    </a>
+</div>            }
 
         </div>
 

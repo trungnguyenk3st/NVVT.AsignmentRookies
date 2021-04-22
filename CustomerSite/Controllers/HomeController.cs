@@ -23,20 +23,11 @@ namespace CustomerSite.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> IndexAsync()
+       
+        public IActionResult Index()
         {
-            //
-            var client = new HttpClient();
-            //
-            var resp = await client.GetAsync("https://localhost:44342/api/category");
-            if (!resp.IsSuccessStatusCode) return null;
-            var data = await resp.Content.ReadAsStringAsync();
-            //
-            var cate = JsonSerializer.Deserialize<List<CategoryVm>>(data, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            ViewBag.Data = cate;
             return View();
         }
-
         public IActionResult About()
         {
             return View();
@@ -47,30 +38,6 @@ namespace CustomerSite.Controllers
             return View();
         }
 
-
-
-
-
-
-
-        [Authorize]
-        public async Task<IActionResult> Privacy()
-        {
-            //var acessToken = await HttpContext.GetTokenAsync("access_token");
-            //var requestId = await HttpContext.GetTokenAsync("id_token");
-
-            //return View();
-            var client = new HttpClient();
-            //
-            var resp = await client.GetAsync("https://localhost:44342/api/products");
-            if (!resp.IsSuccessStatusCode) return null;
-            var data = await resp.Content.ReadAsStringAsync();
-            //
-            var products = JsonSerializer.Deserialize<List<ProductVm>>(data, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            ViewBag.Data = products;
-            return View();
-
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

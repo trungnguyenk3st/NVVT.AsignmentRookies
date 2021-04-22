@@ -19,7 +19,7 @@ namespace CustomerSite.Services.Product
 
         public async Task<IList<ProductVm>> GetProducts()
         {
-            var response = await _client.GetAsync("/api/products");
+            var response = await _client.GetAsync("api/products");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<IList<ProductVm>>();
         }
@@ -33,7 +33,7 @@ namespace CustomerSite.Services.Product
 
         public async Task<IList<ProductVm>> GetProductByCategory(int id)
         {
-            var response = await _client.GetAsync("products/category/" + id);
+            var response = await _client.GetAsync("api/products/category/" + id);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<IList<ProductVm>>();
         }

@@ -40,7 +40,7 @@ namespace CustomerSite
             var hostUri = domain["Default"];
 
             Config.ApiUrl = hostUri;
-            ConfigUrl.ApiUrl = hostUri + domain["ImageUrl"];
+         
 
             services.AddAuthentication(options =>
             {
@@ -70,12 +70,15 @@ namespace CustomerSite
                     //    RoleClaimType = "role"
                     //};
                 });
-            services.AddHttpClient();
-            services.AddHttpClient<IProductApiClient, ProductApiClient>();
-            services.AddHttpClient<ICategoryApiClient, CategoryApiClient>();
+            services.AddHttpClient("host", (configureClient) =>
+            {
+                configureClient.BaseAddress = new Uri(hostUri);
+            });
+            services.AddScoped<IProductApiClient, ProductApiClient>();
+            services.AddScoped<ICategoryApiClient, CategoryApiClient>();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddHttpClient<IRatingService, RatingService>();
-            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IRatingService, RatingService>();
+     
 
             services.AddDistributedMemoryCache();
             services.AddSession(options =>

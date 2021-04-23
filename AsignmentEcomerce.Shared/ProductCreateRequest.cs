@@ -21,8 +21,9 @@ namespace AsignmentEcomerce.Shared
         public IFormFile ImageUrl { get; set; }
 
         public int IDCategory { get; set; }
-    
-        
+        public string NameCategory { get; set; }
+
+
 
     }
 }

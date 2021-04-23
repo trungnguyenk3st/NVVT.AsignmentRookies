@@ -63,38 +63,24 @@ namespace AsignmentEcomerce.Controllers
             return productVm;
         }
 
+     
         [HttpGet]
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProductVm>>> GetProducts()
         {
-            var products = await _context.Products.Select(x =>
-                new
-                {
-                    x.IDProduct,
-                    x.NameProduct,
-                    x.UnitPrice,
-                    x.Description,
-                    x.Image
-                }).ToListAsync();
-
-            var productVms = products.Select(x =>
-                new ProductVm
+            return await _context.Products.Include(p => p.Category)
+                .Select(x => new ProductVm
                 {
                     IDProduct = x.IDProduct,
                     NameProduct = x.NameProduct,
-                    UnitPrice = x.UnitPrice,
-                    Description = x.Description,
-                    ImageUrl = _storageService.GetFileUrl(x.Image)
-                }).ToList();
-
-            _logger.LogInformation("get products");
-            using (var activity = DemoSource.StartActivity("This is sample activity"))
-            {
-                _logger.LogInformation("Hello, World!");
-            }
-
-            return productVms;
+                    ImageUrl = _storageService.GetFileUrl(x.Image),
+                    UnitPrice = x.UnitPrice,              
+                    Description = x.Description,           
+                    NameCategory = x.Category.NameCategory,
+                })
+                .ToListAsync();
         }
+
 
         [HttpGet("category/{CategoryId}")]
         [AllowAnonymous]

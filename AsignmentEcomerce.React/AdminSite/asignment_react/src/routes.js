@@ -7,6 +7,7 @@ import Category from "./pages/categories/Category";
 import Order from "./pages/orders/Order";
 import User from "./pages/users/User";
 import NotMatch from "./pages/errors/NotMatch";
+import ProductDetail from "./pages/product-detail/ProductDetail";
 
 
 export default function Routes(props) {
@@ -21,6 +22,7 @@ export default function Routes(props) {
       <Route path="/products">
         <Product />
       </Route>
+      <Route path="/product/:id" component={ProductDetail} />
       <Route path="/categories">
         <Category />
       </Route>

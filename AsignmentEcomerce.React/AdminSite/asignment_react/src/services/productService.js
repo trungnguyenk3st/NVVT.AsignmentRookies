@@ -1,25 +1,38 @@
-import axios from "axios";
-import { host } from "../config";
-export default function orderService(serName = "order", alisName = "Order") {
-  return {
-    getList: (start, end) =>
-      axios({
-        url: host + "/" + serName,
-        method: "get",
-        actionName: "Lấy danh sách " + alisName,
-      }),
-    get: (id) =>
-      axios({
-        url: host + "/" + serName + "/" + id,
-        method: "get",
-      }),
-    edit: (id, object) => {
-      return axios({
-        url: host + "/" + serName + "/" + id,
-        method: "post",
-        data: object,
-        actionName: "chỉnh sửa " + alisName,
-      });
-    },
-  };
+import http from "../httpClient";
+
+class productService {
+  pathSer = "products";
+
+  getList(params) {
+    return http.get(this.pathSer + this._createQuery(params));
+  }
+
+  get(id) {
+    return http.get(this.pathSer + "/" + id);
+  }
+
+  edit(id, objectEdit) {
+    return http.put(this.pathSer + "/" + id, objectEdit);
+  }
+
+  delete(id) {
+    return http.delete(this.pathSer + "/" + id);
+  }
+
+  create(objectNew) {
+    return http.post(this.pathSer, objectNew);
+  }
+
+  _createQuery(params) {
+    if (!params) return "";
+    let queryStr = "";
+    for (const key in params) {
+      if (!params[key]) continue;
+      if (queryStr) queryStr += "&&";
+      queryStr += key + "=" + params[key];
+    }
+    return "?" + queryStr;
+  }
 }
+
+export default new productService();

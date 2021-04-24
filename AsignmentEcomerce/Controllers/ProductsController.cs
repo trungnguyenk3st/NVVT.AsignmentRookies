@@ -17,6 +17,7 @@ using System.Net.Http.Headers;
 using System.IO;
 using System.Security.Claims;
 using AsignmentEcomerce.Services.Repositories;
+using Microsoft.AspNetCore.Hosting;
 
 namespace AsignmentEcomerce.Controllers
 {
@@ -101,7 +102,8 @@ namespace AsignmentEcomerce.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostProduct([FromForm] ProductCreateRequest productCreateRequest)
+        [AllowAnonymous]
+        public async Task<IActionResult> PostProduct([FromServices] IWebHostEnvironment env,[FromForm] ProductCreateRequest productCreateRequest)
         {
             var product = new Product
             {
@@ -111,9 +113,31 @@ namespace AsignmentEcomerce.Controllers
                 IDCategory = productCreateRequest.IDCategory
             };
 
-            if (productCreateRequest.ImageUrl != null)
+            /* if (productCreateRequest.ImageUrl != null)
+             {
+                 product.Image = await SaveFile(productCreateRequest.ImageUrl);
+             }*/
+            //
+            var imageFile = productCreateRequest.ImageUrl;
+            if (imageFile != null)
             {
-                product.Image = await SaveFile(productCreateRequest.ImageUrl);
+
+                product.Image = imageFile.FileName;
+                //
+                var folderPath = Path.Combine(env.WebRootPath, "user-content", imageFile.FileName);
+                try
+                {
+                    using (var fileSteam = new FileStream(folderPath, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(fileSteam);
+                    }
+                }
+                catch (Exception)
+                {
+                    throw new Exception("can't upload file");
+                }
+
+
             }
 
             _context.Products.Add(product);
@@ -130,8 +154,9 @@ namespace AsignmentEcomerce.Controllers
             return fileName;
         }
         [HttpPut("{id}")]
-        [Authorize(Roles = "admin")]
-        public async Task<IActionResult> PutProduct(int id, ProductCreateRequest productCreateRequest)
+        /*[Authorize(Roles = "admin")]*/
+        [AllowAnonymous]
+        public async Task<IActionResult> PutProduct([FromServices] IWebHostEnvironment env, int id, [FromForm] ProductCreateRequest productCreateRequest)
         {
             var product = await _context.Products.FindAsync(id);
 
@@ -141,7 +166,27 @@ namespace AsignmentEcomerce.Controllers
             }
 
             product.NameProduct = productCreateRequest.NameProduct;
-            product.Image = productCreateRequest.Image.ToString();
+            //
+            var imageFile = productCreateRequest.ImageUrl;
+            if (imageFile != null)
+            {
+                
+                product.Image = imageFile.FileName;
+                //
+                var folderPath = Path.Combine(env.WebRootPath, "user-content", imageFile.FileName);
+                try {
+                    using (var fileSteam = new FileStream(folderPath, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(fileSteam);
+                    }
+                }
+                catch (Exception)
+                {
+                    throw new Exception("can't upload file");
+                }
+         
+
+            }
             product.UnitPrice = productCreateRequest.UnitPrice;
             product.Description = productCreateRequest.Description;
             product.IDCategory = productCreateRequest.IDCategory;
@@ -150,7 +195,8 @@ namespace AsignmentEcomerce.Controllers
             return NoContent();
         }
         [HttpDelete("{id}")]
-        [Authorize(Roles = "admin")]
+        [AllowAnonymous]
+        //[Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);

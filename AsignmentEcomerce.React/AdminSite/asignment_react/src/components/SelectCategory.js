@@ -42,8 +42,8 @@ export default function SelectCategory({
         </option>
       )}
       {listCates.map((item) => (
-        <option key={+item.Id} value={item.Id}>
-          {item.Name}
+        <option key={+item.idCategory} value={item.idCategory}>
+          {item.nameCategory}
         </option>
       ))}
     </Input>

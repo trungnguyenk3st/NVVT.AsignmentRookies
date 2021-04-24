@@ -12,7 +12,16 @@ class productService {
   }
 
   edit(id, objectEdit) {
-    return http.put(this.pathSer + "/" + id, objectEdit);
+    var fromDATA = new FormData();
+    for (const key in objectEdit) {
+      fromDATA.append(key,objectEdit[key]);
+    }
+    console.log(fromDATA)
+    return http.put(this.pathSer + "/" + id, fromDATA,{
+      headers:{
+        'Content-Type': 'multipart/form-data'
+      }
+    });
   }
 
   delete(id) {
@@ -20,7 +29,17 @@ class productService {
   }
 
   create(objectNew) {
-    return http.post(this.pathSer, objectNew);
+    var fromDATA = new FormData();
+    for (const key in objectNew) {
+      fromDATA.append(key,objectNew[key]);
+    }
+    // console.log(fromDATA)
+    // console.log(objectNew)
+   return http.post(this.pathSer,fromDATA,{
+    headers:{
+      'Content-Type': 'multipart/form-data'
+    }
+  });
   }
 
   _createQuery(params) {

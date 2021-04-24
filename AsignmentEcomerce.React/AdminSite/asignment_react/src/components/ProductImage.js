@@ -1,6 +1,5 @@
 import React from "react";
-
-const productRes = "https://trungshop.azurewebsites.net/";
+import { productRes } from "../config";
 
 export default function ProductImage({ src }) {
   return (

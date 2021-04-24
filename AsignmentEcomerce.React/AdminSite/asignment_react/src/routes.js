@@ -22,7 +22,10 @@ export default function Routes(props) {
       <Route path="/products">
         <Product />
       </Route>
-      <Route path="/product/:id" component={ProductDetail} />
+      <Route path="/product/:id">
+        <ProductDetail/>
+      </Route>
+     
       <Route path="/categories">
         <Category />
       </Route>

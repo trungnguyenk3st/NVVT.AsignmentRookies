@@ -62,7 +62,7 @@ export default function ListProduct({ datas, onChangeCate, onChangeSort }) {
             
               <td className="text-right">
                 <Button color="link">
-                  <Link to={"/products/" + item.idProduct}>Edit</Link>
+                  <Link to={"/product/" + item.idProduct}>Edit</Link>
                 </Button>
               </td>
             </tr>
@@ -70,4 +70,5 @@ export default function ListProduct({ datas, onChangeCate, onChangeSort }) {
       </tbody>
     </Table>
   );
+  
 }

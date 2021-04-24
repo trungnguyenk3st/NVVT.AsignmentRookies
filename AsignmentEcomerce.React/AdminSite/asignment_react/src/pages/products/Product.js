@@ -28,7 +28,7 @@ export default function Product(props) {
   };
 
   const handleChangeCate = (val) => {
-    _parmas.idCategory = val;
+    _parmas.cateId = val;
     _fetchProducts();
   };
 
@@ -44,7 +44,7 @@ export default function Product(props) {
   };
 
   const handleCreate = () => {
-    history.push("/products/0");
+    history.push("/product/0");
   };
 
   const handleRefressh = () => {

@@ -13,12 +13,12 @@ import ProductDetail from "./pages/product-detail/ProductDetail";
 export default function Routes(props) {
   return (
     <Switch>
-      <Route exact path="/">
+      {/* <Route exact path="/">
         <Dashboard />
       </Route>
       <Route path="/orders">
         <Order />
-      </Route>
+      </Route> */}
       <Route path="/products">
         <Product />
       </Route>

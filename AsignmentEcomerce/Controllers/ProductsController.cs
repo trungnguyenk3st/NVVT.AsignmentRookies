@@ -42,6 +42,7 @@ namespace AsignmentEcomerce.Controllers
 
         [HttpGet("{id}")]
         [AllowAnonymous]
+        
         public async Task<ActionResult<ProductVm>> GetProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -67,6 +68,7 @@ namespace AsignmentEcomerce.Controllers
      
         [HttpGet]
         [AllowAnonymous]
+
         public async Task<ActionResult<IEnumerable<ProductVm>>> GetProducts()
         {
             return await _context.Products.Include(p => p.Category)
@@ -85,6 +87,7 @@ namespace AsignmentEcomerce.Controllers
 
         [HttpGet("category/{CategoryId}")]
         [AllowAnonymous]
+
         public async Task<ActionResult<IEnumerable<ProductVm>>> GetProductByCategory(int CategoryId)
         {
             return await _context.Products.Include(p => p.Category).Where(p => p.IDCategory == CategoryId)
@@ -154,8 +157,8 @@ namespace AsignmentEcomerce.Controllers
             return fileName;
         }
         [HttpPut("{id}")]
-        /*[Authorize(Roles = "admin")]*/
         [AllowAnonymous]
+
         public async Task<IActionResult> PutProduct([FromServices] IWebHostEnvironment env, int id, [FromForm] ProductCreateRequest productCreateRequest)
         {
             var product = await _context.Products.FindAsync(id);
@@ -196,7 +199,6 @@ namespace AsignmentEcomerce.Controllers
         }
         [HttpDelete("{id}")]
         [AllowAnonymous]
-        //[Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);

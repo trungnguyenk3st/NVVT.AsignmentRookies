@@ -13,7 +13,7 @@ namespace AsignmentEcomerce.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize("Bearer")]
+    [Authorize("Bearer")]
     public class CategoryController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -54,7 +54,7 @@ namespace AsignmentEcomerce.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "admin")]
+        [AllowAnonymous]
         public async Task<IActionResult> PutCategorys(int id, CategoryCreateRequest categoryCreateRequest)
         {
             var category = await _context.Categorys.FindAsync(id);
@@ -71,7 +71,7 @@ namespace AsignmentEcomerce.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [AllowAnonymous]
         public async Task<ActionResult<CategoryVm>> PostCategorys(CategoryCreateRequest categoryCreateRequest)
         {
             var category = new Category
@@ -86,7 +86,7 @@ namespace AsignmentEcomerce.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "admin")]
+        [AllowAnonymous]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             var category = await _context.Categorys.FindAsync(id);

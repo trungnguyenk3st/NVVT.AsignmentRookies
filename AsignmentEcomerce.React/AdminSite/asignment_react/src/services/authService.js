@@ -16,6 +16,7 @@ const userManager = new UserManager(config);
 export async function loadUserFromStorage(store) {
   try {
     let user = await userManager.getUser();
+    console.log(user);
     if (!user) {
       return store.dispatch(storeUserError());
     }

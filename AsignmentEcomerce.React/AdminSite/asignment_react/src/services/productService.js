@@ -1,5 +1,6 @@
 import http from "../httpClient";
 
+
 class productService {
   pathSer = "products";
 

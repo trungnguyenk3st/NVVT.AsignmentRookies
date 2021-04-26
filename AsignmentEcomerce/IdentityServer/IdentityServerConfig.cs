@@ -20,6 +20,7 @@ namespace AsignmentEcomerce.IdentityServer
              new ApiScope[]
              {
                   new ApiScope("rookieshop.api", "Rookie Shop API"),
+                  new ApiScope("admin"),
              };
 
         public static IEnumerable<Client> Clients(Dictionary<string, string> clientUrls) =>
@@ -88,39 +89,34 @@ namespace AsignmentEcomerce.IdentityServer
                 },
                 new Client
                 {
-                    ClientName = "react_code_client",
-                    ClientId = "react_code_client",
+                    ClientName = "react_admin",
+                    ClientId = "react_app",
                     AccessTokenType = AccessTokenType.Reference,
-                    AllowedGrantTypes = GrantTypes.Code,
+                    AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
 
                     RequireClientSecret = false,
-                    RequireConsent = false,
-                    RequirePkce = true,
+                 
 
-                    RedirectUris = new List<string>
+                    RedirectUris = 
                     {
-                        $"{clientUrls["React"]}/authentication/login-callback",
-                        $"{clientUrls["React"]}/silent-renew.html",
-                        $"{clientUrls["React"]}"
+                        $"{clientUrls["React"]}/signin-oidc"                    
                     },
+                    FrontChannelLogoutUri = $"{clientUrls["React"]}/signout-oidc",
+
+
                     PostLogoutRedirectUris = new List<string>
                     {
                         $"{clientUrls["React"]}/unauthorized",
-                        $"{clientUrls["React"]}/authentication/logout-callback",
+                        $"{clientUrls["React"]}/signout-callback-oidc",
                         $"{clientUrls["React"]}"
                     },
                     AllowedCorsOrigins = new List<string>
                     {
                         $"{clientUrls["React"]}"
                     },
-
-                    AllowedScopes = new List<string>
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                         "rookieshop.api"
-                    }
+                    AllowedScopes = { "openid", "profile", "rookieshop.api" },
+                   
                 },
             };
     }

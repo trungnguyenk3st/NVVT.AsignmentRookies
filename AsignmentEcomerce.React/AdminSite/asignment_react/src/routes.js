@@ -22,6 +22,7 @@ export default function Routes(props) {
       <Redirect exact from="/" to="/products" />
 
       <PrivateRoute path="/products" component={Product} />
+      <PrivateRoute path="/product/:id" component={ProductDetail} />
       <PrivateRoute path="/categories" component={Category} />
       <PrivateRoute path="/users" component={User} />
 

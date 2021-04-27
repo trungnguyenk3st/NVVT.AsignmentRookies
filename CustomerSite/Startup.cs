@@ -64,11 +64,11 @@ namespace CustomerSite
                     options.Scope.Add("profile");
                     options.Scope.Add("rookieshop.api");
 
-                    //options.TokenValidationParameters = new TokenValidationParameters
-                    //{
-                    //    NameClaimType = "name",
-                    //    RoleClaimType = "role"
-                    //};
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        NameClaimType = "name",
+                        RoleClaimType = "role"
+                    };
                 });
             services.AddHttpClient("host", (configureClient) =>
             {

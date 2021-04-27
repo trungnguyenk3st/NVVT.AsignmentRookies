@@ -10,7 +10,7 @@ export default function Header(props) {
   return (
     <div className="clearfix">
       <div className="float-left">
-        <img width="40" src="./logo192.png" alt="" />
+        <img width="180" src="./logo.png" alt="" />
       </div>
       <div className="float-right ">
         <span>Hello,{user?.profile.name}</span>

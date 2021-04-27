@@ -23,7 +23,8 @@ namespace AsignmentEcomerce
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public static Dictionary<string, string> clientUrls;
+       public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -35,7 +36,7 @@ namespace AsignmentEcomerce
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var clientUrls = new Dictionary<string, string>
+             clientUrls = new Dictionary<string, string>
             {
                 ["Mvc"] = Configuration["ClientUrl:Mvc"],
                 ["Swagger"] = Configuration["ClientUrl:Swagger"],

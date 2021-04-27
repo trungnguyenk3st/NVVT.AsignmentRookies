@@ -79,7 +79,6 @@
                         <!-- Header Right -->
                         <div class="header-right">
                             <ul>
-                               
                                 <li>
                                     <div class="cart">
                                         @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart") != null)
@@ -95,24 +94,23 @@
                             </a> }
                         else
                         {
-            <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
-                <span>
-                    <i id="cart-product" class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    <span class="quantity">0</span>
-                </span>
-            </a>}
+                    <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                        <span>
+                            <i id="cart-product" class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span class="quantity">0</span>
+                        </span>
+                    </a>}
                                     </div>
-
                                 </li>
 
-                                
-
-                                    <li> <partial name="_LoginPartial" /></li>
-                                
-                             
-                                @*<li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>*@
                             </ul>
                         </div>
+                        <div>
+
+                            <partial name="_LoginPartial" />
+
+                        </div>
+
                     </div>
                     <!-- Mobile Menu -->
                     <div class="col-12">

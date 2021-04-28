@@ -43,7 +43,7 @@
                                 <label>Name</label>
                             </th>
                             <th style="text-align:center;">
-                                <label>Category</label>
+                                <label>Decription</label>
                             </th>
                             <th style="text-align:center;">
                                 <label>UnitPrice</label>
@@ -63,7 +63,7 @@
                             @Html.DisplayFor(x => item.NameProduct)
                         </td>
                         <td class="info">
-                            @Html.DisplayFor(x => item.NameCategory)
+                            @Html.DisplayFor(x => item.Description)
                         </td>
                         @{
 
@@ -103,7 +103,7 @@
 }
 else
 {
-    <img src="~/img/empty-cart.png" style="display: block; margin: auto; width: 50rem;" />
+    <img src="~/assets/img/logo/logo.png" style="display: block; margin: auto; width: 150px;" />
     <div class="info" style="text-align: center">
         <h3>The shopping cart is empty!</h3>
         <a asp-controller="Home" asp-action="Index">Shopping continue</a>

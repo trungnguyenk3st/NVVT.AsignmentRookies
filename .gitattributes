@@ -2,9 +2,9 @@
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
 * text=auto
-CustomerSite/wwwroot/assets/scss** linguist-vendored
-CustomerSite/wwwroot/assets/css** linguist-vendored
-CustomerSite/wwwroot/assets/js** linguist-vendored
+CustomerSite/wwwroot/assets/scss/** linguist-vendored
+CustomerSite/wwwroot/assets/css/** linguist-vendored
+CustomerSite/wwwroot/assets/js/** linguist-vendored
 
 ###############################################################################
 # Set default behavior for command prompt diff.

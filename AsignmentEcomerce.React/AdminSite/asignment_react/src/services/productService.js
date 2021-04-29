@@ -4,8 +4,11 @@ import http from "../httpClient";
 class productService {
   pathSer = "products";
 
-  getList(params) {
-    return http.get(this.pathSer + this._createQuery(params));
+  getByCategory(){
+
+  }
+  getList() {
+    return http.get(this.pathSer);
   }
 
   get(id) {

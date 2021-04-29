@@ -10,6 +10,7 @@ export default function EditProduct({ itemEdit, onSave, onCancel }) {
   const [inputDescription, setInputDescription] = React.useState("");
   const [inputCate, setInputCate] = React.useState(0);
 
+  
   React.useEffect(() => {
     console.log(itemId);
     setInputName(itemEdit?.nameProduct);
@@ -20,11 +21,13 @@ export default function EditProduct({ itemEdit, onSave, onCancel }) {
   }, [itemEdit]);
 
   const imageRef = React.useRef(null);
+  const [preview,setPreview] = React.useState(null);
   //handle form
   const handleChangeName = (e) => setInputName(e.target.value);
   const handleChangePrice = (e) => setInputPrice(e.target.value);
   const handleChangeDescription = (e) => setInputDescription(e.target.value);
   const handleChangeCate = (val) => setInputCate(val);
+  const handleImages = (e)=>setPreview(URL.createObjectURL(e.target.files[0]));
 
   //handle
   const handleSubmit = () => {
@@ -89,7 +92,9 @@ export default function EditProduct({ itemEdit, onSave, onCancel }) {
           type="file"
           innerRef={imageRef}
           name="Image"
+          onChange={handleImages}
         />
+          <img key={1} src={preview} alt="Choose Image" className="img-fluid" style={{width:"250px"}}/>
       </FormGroup>
 
       <div className="pt-3">
@@ -100,6 +105,7 @@ export default function EditProduct({ itemEdit, onSave, onCancel }) {
           Cancel
         </Button>
       </div>
+    
     </Form>
   );
 }

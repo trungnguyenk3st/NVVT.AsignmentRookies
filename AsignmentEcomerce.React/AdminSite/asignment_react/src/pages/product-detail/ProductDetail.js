@@ -48,7 +48,7 @@ export default function ProductDetail() {
 
   return (
     <SingleLayout
-      title="Product Detail"
+      title="Product Change"
       actions={
         <Button color="danger" children="Delete" onClick={handleDelelte} />
       }

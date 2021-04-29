@@ -7,11 +7,6 @@ import { useHistory } from "react-router";
 
 import _prodSer from "../../services/productService";
 
-const _parmas = {
-  query: "",
-  cateId: 0,
-  sort: null,
-};
 
 export default function Product(props) {
   const [listProducts, setProducts] = React.useState([]);
@@ -22,25 +17,13 @@ export default function Product(props) {
 
   //handle
   const _fetchProducts = () => {
-    _prodSer.getList(_parmas).then((resp) => {
+    _prodSer.getList().then((resp) => {
       setProducts(resp.data);
     });
   };
 
   const handleChangeCate = (val) => {
-    _parmas.cateId = val;
-    _fetchProducts();
-  };
-
-  const handleChangeSort = (val) => {
-    if (val < 0) _parmas.sort = null;
-    else _parmas.sort = val;
-    _fetchProducts();
-  };
-
-  const handleSearch = (query) => {
-    _parmas.query = query;
-    _fetchProducts();
+    _prodSer.getByCategory(val).then()
   };
 
   const handleCreate = () => {
@@ -48,10 +31,7 @@ export default function Product(props) {
   };
 
   const handleRefressh = () => {
-    _parmas.typeId = 0;
-    _parmas.sort = null;
-    _parmas.query = "";
-    _fetchProducts(1);
+    _fetchProducts();
   };
 
   return (
@@ -64,7 +44,6 @@ export default function Product(props) {
           </Button>
           <SearchBar
             placeholder="Product name ..."
-            onSearchSubmit={handleSearch}
           />
           <Button
             className="ml-3"
@@ -79,7 +58,6 @@ export default function Product(props) {
           <ListProduct
             datas={listProducts}
             onChangeCate={handleChangeCate}
-            onChangeSort={handleChangeSort}
           />
         </>
       }

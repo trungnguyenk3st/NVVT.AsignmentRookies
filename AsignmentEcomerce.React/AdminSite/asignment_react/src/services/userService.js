@@ -1,5 +1,19 @@
-import commonService from "./commonService";
+import axios from "axios";
+import { host } from "../config";
 
-class userService extends commonService {}
+class userService {
+  constructor(pathSer, aliasName) {
+    this.pathSer = pathSer;
+    this.aliasName = aliasName;
+  }
 
-export default new userService("user/", "Customer");
+  getList() {
+    return axios({
+      url: host + "/" + this.pathSer,
+      method: "get",
+      actionName: `Get list ${this.aliasName}`,
+    });
+  }
+}
+
+export default new  userService("user", "Name User");

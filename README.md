@@ -10,7 +10,7 @@ Build an ecommerce web site with minimum functionality below:
 
 ### [](https://github.com/#for-customers)For customers:
 
--   Home page: category menu, features products
+-   Home page: category menu, display products
 -   View products by category
 -   View product details
 -   Product rating

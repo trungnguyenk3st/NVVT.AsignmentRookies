@@ -63,5 +63,32 @@ namespace AsignmentEcomerce.Test.Controllers
             var actionResult = Assert.IsType<ActionResult<CategoryVm>>(result);
             Assert.NotNull(actionResult.Value);
         }
+        [Fact]
+        public async Task PutCategory_Success()
+        {
+            // Arrange
+            var dbContext = _fixture.Context;
+
+            dbContext.Categorys.Add(new Category { NameCategory = "Test category" });
+            await dbContext.SaveChangesAsync();
+
+            var oldCategory = TestData.CateTestData();
+            await dbContext.AddAsync(oldCategory);
+            await dbContext.SaveChangesAsync();
+
+            var newCategory = TestData.CateCreateTestData();
+
+            var categoriesController = new CategoryController(dbContext);
+
+            // Act
+            var result = await categoriesController.PutCategorys(oldCategory.IDCategory, newCategory);
+
+            // Assert
+            var postCategoryResult = Assert.IsType<ActionResult<CategoryVm>>(result);
+            var resultValue = Assert.IsType<CategoryVm>(postCategoryResult.Value);
+
+            Assert.Equal("Name Category Test New", resultValue.NameCategory);
+         
+        }
     }
 }

@@ -1,17 +1,3 @@
 {
-  "dependencies": {
-    "mssql1": {
-      "type": "mssql",
-      "connectionId": "DefaultConnection"
-    }
-  }
+  "dependencies": {}
 }
-
-
-
-
-
-
-
-
-

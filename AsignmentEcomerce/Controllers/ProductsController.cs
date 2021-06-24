@@ -31,6 +31,7 @@ namespace AsignmentEcomerce.Controllers
         private readonly ILogger _logger;
         private readonly IRateRepository _rateRepository;
         private static readonly ActivitySource DemoSource = new ActivitySource("OTel.Demo");
+        private ApplicationDbContext dbContext;
 
         public ProductsController(ApplicationDbContext context, IStorageService storageService, ILogger<ProductsController> logger, IRateRepository rateRepository)
         {
@@ -39,6 +40,8 @@ namespace AsignmentEcomerce.Controllers
             _logger = logger;
             _rateRepository = rateRepository;
         }
+
+      
 
         [HttpGet("{id}")]
         [AllowAnonymous]

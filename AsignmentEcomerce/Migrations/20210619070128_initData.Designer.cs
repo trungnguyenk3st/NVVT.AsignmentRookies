@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AsignmentEcomerce.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210406023008_newdata")]
-    partial class newdata
+    [Migration("20210619070128_initData")]
+    partial class initData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,6 +37,55 @@ namespace AsignmentEcomerce.Migrations
                     b.ToTable("Categorys");
                 });
 
+            modelBuilder.Entity("AsignmentEcomerce.Models.Order", b =>
+                {
+                    b.Property<int>("IDorder")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IDorder");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("AsignmentEcomerce.Models.OrderDetails", b =>
+                {
+                    b.Property<int>("IDOrderDetail")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IDOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDProduct")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<double>("UnitPrice")
+                        .HasColumnType("float");
+
+                    b.HasKey("IDOrderDetail");
+
+                    b.HasIndex("IDOrder");
+
+                    b.HasIndex("IDProduct");
+
+                    b.ToTable("OrderDetails");
+                });
+
             modelBuilder.Entity("AsignmentEcomerce.Models.Product", b =>
                 {
                     b.Property<int>("IDProduct")
@@ -47,6 +96,10 @@ namespace AsignmentEcomerce.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("IDCategory")
                         .HasColumnType("int");
 
@@ -56,9 +109,6 @@ namespace AsignmentEcomerce.Migrations
                     b.Property<string>("NameProduct")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
 
                     b.Property<double>("UnitPrice")
                         .HasColumnType("float");
@@ -71,6 +121,37 @@ namespace AsignmentEcomerce.Migrations
                     b.HasIndex("IDCategory");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("AsignmentEcomerce.Models.RatingProduct", b =>
+                {
+                    b.Property<int>("IDRating")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IDProduct")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalStar")
+                        .HasColumnType("int");
+
+                    b.HasKey("IDRating");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("IDProduct");
+
+                    b.ToTable("RatingProducts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -136,6 +217,10 @@ namespace AsignmentEcomerce.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -187,6 +272,8 @@ namespace AsignmentEcomerce.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -273,6 +360,46 @@ namespace AsignmentEcomerce.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("AsignmentEcomerce.Models.User", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("User");
+                });
+
+            modelBuilder.Entity("AsignmentEcomerce.Models.Order", b =>
+                {
+                    b.HasOne("AsignmentEcomerce.Models.User", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("AsignmentEcomerce.Models.OrderDetails", b =>
+                {
+                    b.HasOne("AsignmentEcomerce.Models.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("IDOrder")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AsignmentEcomerce.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("IDProduct")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("AsignmentEcomerce.Models.Product", b =>
                 {
                     b.HasOne("AsignmentEcomerce.Models.Category", "Category")
@@ -282,6 +409,23 @@ namespace AsignmentEcomerce.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("AsignmentEcomerce.Models.RatingProduct", b =>
+                {
+                    b.HasOne("AsignmentEcomerce.Models.User", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("AsignmentEcomerce.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("IDProduct")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -338,6 +482,11 @@ namespace AsignmentEcomerce.Migrations
             modelBuilder.Entity("AsignmentEcomerce.Models.Category", b =>
                 {
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("AsignmentEcomerce.Models.Order", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618
         }

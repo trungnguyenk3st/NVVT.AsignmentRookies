@@ -1,14 +1,16 @@
 # Structure NVVT.AsignmentRookies
 
 ![architecture](https://user-images.githubusercontent.com/58099804/113654712-9b676b00-96c2-11eb-9133-a2c2f2df7bed.png)
-
+- Link Back-End : https://backende069e98663574dd58d6fe43c48b63058.azurewebsites.net/
+- Link Customer : https://customersitecb171604514e49b9b211e29df368a117.azurewebsites.net/
+- Link Admin : https://sad52fe2d276454672b1548a.z23.web.core.windows.net
 # Assignment Requirement
 
 Build an ecommerce web site with minimum functionality below:
 
 ### [](https://github.com/#for-customers)For customers:
 
--   Home page: category menu, features products
+-   Home page: category menu, display products
 -   View products by category
 -   View product details
 -   Product rating
